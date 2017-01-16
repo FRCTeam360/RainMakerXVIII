@@ -11,6 +11,6 @@ dist/
 *.lock
 *.DS_Store
 
-! /.metadata/.plugins/org.eclipse.cdt.core
-! /.metadata/.plugins/org.eclipse.e4.workbench
-! /.metadata/.plugins/org.eclipse.jdt.core
+! /.metadata/.plugins/org.eclipse.cdt.core/*
+! /.metadata/.plugins/org.eclipse.e4.workbench/*
+! /.metadata/.plugins/org.eclipse.jdt.core/*
