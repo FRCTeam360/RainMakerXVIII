@@ -1,4 +1,4 @@
-!SESSION 2017-01-15 13:44:26.311 -----------------------------------------------
+!SESSION 2017-01-15 16:36:39.922 -----------------------------------------------
 eclipse.buildId=4.6.2.M20161124-1400
 java.version=1.8.0_05
 java.vendor=Oracle Corporation
@@ -6,16 +6,10 @@ BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/josh/.eclipse_keyring
 Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/josh/.eclipse_keyring
 
-!ENTRY org.eclipse.core.net 1 0 2017-01-15 13:45:42.933
+!ENTRY org.eclipse.core.net 1 0 2017-01-15 16:36:49.548
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:05.616
-!MESSAGE Installing tools if necessary
-
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:05.669
-!MESSAGE Install necessary for tools
-
-!ENTRY org.eclipse.ui.intro 4 0 2017-01-15 13:46:06.958
+!ENTRY org.eclipse.ui.intro 4 0 2017-01-15 16:36:55.736
 !MESSAGE /Users/josh/eclipse/java-neon/Eclipse.app/Contents/MacOS/WPILib Intro/sample.xml (No such file or directory)
 !STACK 0
 java.io.FileNotFoundException: /Users/josh/eclipse/java-neon/Eclipse.app/Contents/MacOS/WPILib Intro/sample.xml (No such file or directory)
@@ -75,7 +69,8 @@ java.io.FileNotFoundException: /Users/josh/eclipse/java-neon/Eclipse.app/Content
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:722)
 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:706)
-	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl$1.handleEvent(PartServiceImpl.java:109)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer.showTab(StackRenderer.java:1317)
+	at org.eclipse.e4.ui.workbench.renderers.swt.LazyStackRenderer$1.handleEvent(LazyStackRenderer.java:72)
 	at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:40)
 	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:233)
 	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:145)
@@ -173,12 +168,35 @@ java.io.FileNotFoundException: /Users/josh/eclipse/java-neon/Eclipse.app/Content
 	at org.eclipse.e4.core.contexts.ContextInjectionFactory.inject(ContextInjectionFactory.java:73)
 	at org.eclipse.ui.internal.Workbench.createWorkbenchWindow(Workbench.java:1531)
 	at org.eclipse.ui.internal.Workbench.getActiveWorkbenchWindow(Workbench.java:1505)
-	at org.eclipse.epp.internal.logging.aeri.ide.filters.ActiveShellStatusFilter$ActiveShellTracker.run(ActiveShellStatusFilter.java:50)
-	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
-	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
-	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4032)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3708)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1121)
+	at org.eclipse.ui.internal.services.WorkbenchSourceProvider.updateActiveShell(WorkbenchSourceProvider.java:923)
+	at org.eclipse.ui.internal.services.WorkbenchSourceProvider.getCurrentState(WorkbenchSourceProvider.java:117)
+	at org.eclipse.ui.internal.services.WorkbenchSourceProvider$6.handleEvent(WorkbenchSourceProvider.java:683)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.filterEvent(Display.java:1097)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4251)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1501)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1524)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1505)
+	at org.eclipse.swt.widgets.Shell.windowDidBecomeKey(Shell.java:2229)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5781)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper(Native Method)
+	at org.eclipse.swt.widgets.Widget.callSuper(Widget.java:220)
+	at org.eclipse.swt.widgets.Widget.becomeKeyWindow(Widget.java:381)
+	at org.eclipse.swt.widgets.Shell.becomeKeyWindow(Shell.java:530)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5597)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSend(Native Method)
+	at org.eclipse.swt.internal.cocoa.NSWindow.makeKeyAndOrderFront(NSWindow.java:202)
+	at org.eclipse.swt.widgets.Shell.makeKeyAndOrderFront(Shell.java:1312)
+	at org.eclipse.swt.widgets.Shell.setWindowVisible(Shell.java:2019)
+	at org.eclipse.swt.widgets.Shell.open(Shell.java:1372)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.postProcess(WBWRenderer.java:805)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:669)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:757)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$0(PartRenderingEngine.java:728)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:722)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:706)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1059)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1022)
 	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:150)
@@ -200,47 +218,47 @@ java.io.FileNotFoundException: /Users/josh/eclipse/java-neon/Eclipse.app/Content
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:610)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1519)
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:21.316
-!MESSAGE unzip /var/folders/lk/cjk8l1494md1hgsc41691vjm0000gq/T/tools-7196726663951967363.zip -d /Users/josh/wpilib/tools
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:36:59.963
+!MESSAGE Installing tools if necessary
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:32.398
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:36:59.981
+!MESSAGE Install necessary for tools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:02.587
+!MESSAGE unzip /var/folders/lk/cjk8l1494md1hgsc41691vjm0000gq/T/tools-8620292632459821237.zip -d /Users/josh/wpilib/tools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:04.243
 !MESSAGE Installedtools
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:32.424
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:04.261
 !MESSAGE Installing cpp if necessary
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:32.430
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:04.264
 !MESSAGE Install necessary for cpp
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:37.918
-!MESSAGE unzip /var/folders/lk/cjk8l1494md1hgsc41691vjm0000gq/T/cpp-5646133274724943357.zip -d /Users/josh/wpilib/cpp/current
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:05.997
+!MESSAGE unzip /var/folders/lk/cjk8l1494md1hgsc41691vjm0000gq/T/cpp-2655845045766064792.zip -d /Users/josh/wpilib/cpp/current
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:51.218
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:10.177
 !MESSAGE Installedcpp
 
-!ENTRY WPILib_CPP_Robot_Development 1 0 2017-01-15 13:46:51.231
+!ENTRY WPILib_CPP_Robot_Development 1 0 2017-01-15 16:37:10.181
 !MESSAGE Updating projects
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:51.262
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:10.191
 !MESSAGE Installing java if necessary
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:51.286
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:10.207
 !MESSAGE Install necessary for java
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:46:55.085
-!MESSAGE unzip /var/folders/lk/cjk8l1494md1hgsc41691vjm0000gq/T/java-6765887194468532194.zip -d /Users/josh/wpilib/java/current
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:10.926
+!MESSAGE unzip /var/folders/lk/cjk8l1494md1hgsc41691vjm0000gq/T/java-1869874023959715892.zip -d /Users/josh/wpilib/java/current
 
-!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 13:47:04.397
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-01-15 16:37:13.427
 !MESSAGE Installedjava
 
-!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:47:04.406
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 16:37:13.430
 !MESSAGE Updating projects
 
-!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:48:57.670
-!MESSAGE Project: RainMakerXVIII Package: org.usfirst.frc.team360.robot Project Type: edu.wpi.first.wpilib.plugins.java.wizards.newproject.JavaProjectType$3@6e1ef044
-
-!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:54:15.614
-!MESSAGE Running ant file: /Users/josh/Desktop/RainMakerXVIII/RainMakerXVIII/build.xml
-
-!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:54:15.626
-!MESSAGE Targets: deploy, Mode: run
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 16:37:23.327
+!MESSAGE Project: RainMakerXVIII Package: org.usfirst.frc.team360.robot Project Type: edu.wpi.first.wpilib.plugins.java.wizards.newproject.JavaProjectType$3@15b882a0
