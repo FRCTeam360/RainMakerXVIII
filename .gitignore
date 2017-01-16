@@ -2,7 +2,7 @@
 bin/
 build/
 dist/
-version.ini
-.log
+.metadata/.log
+.metadata/version.ini
 .lock
 .DS_Store
