@@ -7,3 +7,14 @@ dist/
 *.lock
 *.DS_Store
 .metadata/.mylyn/
+.metadata/.plugins/org.eclipse.cdt.make.core
+.metadata/.plugins/org.eclipse.core.runtime/.settings
+.metadata/.plugins/org.eclipse.debug.core/.launches
+.metadata/.plugins/org.eclipse.debug.ui
+.metadata/.plugins/org.eclipse.jdt.launching
+.metadata/.plugins/org.eclipse.jdt.ui
+.metadata/.plugins/org.eclipse.m2e.logback.configuration
+.metadata/.plugins/org.eclipse.oomph.setup
+.metadata/.plugins/org.eclipse.ui.intro
+.metadata/.plugins/org.eclipse.ui.workbench
+.metadata/.plugins/org.eclipse.wst.sse.core
