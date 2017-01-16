@@ -2,11 +2,11 @@
 bin/
 build/
 dist/
+.metadata/
 *.log
 *version.ini
 *.lock
 *.DS_Store
-.metadata/
-!.metadata/.plugins/org.eclipse.core.resources
+!.metadata/.plugins/org.eclipse.cdt.core
 !.metadata/.plugins/org.eclipse.e4.workbench
 !.metadata/.plugins/org.eclipse.jdt.core
