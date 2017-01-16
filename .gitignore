@@ -2,3 +2,7 @@
 bin/
 build/
 dist/
+version.ini
+.log
+.lock
+.DS_Store
