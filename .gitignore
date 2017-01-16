@@ -19,4 +19,4 @@ dist/
 .metadata/.plugins/org.eclipse.ui.workbench
 .metadata/.plugins/org.eclipse.wst.sse.core
 .metadata/.plugins/org.eclipse.epp.logging.aeri.ide/org.eclipse.epp.logging.aeri.ide.server
-.metadata/.plugins/org.eclipse.core.resource
+.metadata/.plugins/org.eclipse.core.resources
