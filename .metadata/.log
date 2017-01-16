@@ -238,3 +238,9 @@ java.io.FileNotFoundException: /Users/josh/eclipse/java-neon/Eclipse.app/Content
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:48:57.670
 !MESSAGE Project: RainMakerXVIII Package: org.usfirst.frc.team360.robot Project Type: edu.wpi.first.wpilib.plugins.java.wizards.newproject.JavaProjectType$3@6e1ef044
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:54:15.614
+!MESSAGE Running ant file: /Users/josh/Desktop/RainMakerXVIII/RainMakerXVIII/build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-01-15 13:54:15.626
+!MESSAGE Targets: deploy, Mode: run
