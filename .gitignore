@@ -6,4 +6,4 @@ dist/
 *version.ini
 *.lock
 *.DS_Store
-.metadata/.mylyn/*.zip
+.metadata/.mylyn/
