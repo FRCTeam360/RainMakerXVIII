@@ -9,4 +9,3 @@ dist/
 .metadata/
 !.metadata/.plugins/org.eclipse.core.resources
 !.metadata/.plugins/org.eclipse.e4.workbench
-!.metadata/.plugins/org.eclipse.jdt.core
