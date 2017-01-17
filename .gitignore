@@ -4,8 +4,7 @@
 bin/
 build/
 dist/
-.metadata/.mylyn/
-.metadata/.plugins/
+.metadata/*
 *.log
 *version.ini
 *.lock
