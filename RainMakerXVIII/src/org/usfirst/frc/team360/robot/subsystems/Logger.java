@@ -163,31 +163,6 @@ public class Logger extends Subsystem {
 			e.printStackTrace();
 			}
 	}
-	public void logIntake(){
-		intakeValue = RobotMap.intake.get();
-		try{
-			if(intakeValue != intakeOldValue){
-				intakeOldValue = intakeValue;
-				intakeMessage = '\t' + "intake state: " + intakeValue + '\n';
-				bw.write(intakeMessage);
-			}
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		
-	}
-	public void logCatapult(){
-		catapultValue = RobotMap.catapult.get();
-		try{
-			if(catapultValue != catapultOldValue){
-				catapultOldValue = catapultValue;
-				catapultMessage = '\t' + "catapult State: " + catapultValue + '\n';
-				bw.write(catapultMessage);
-			}
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-	}
 	public void logShiftUp(){
 		try{
 			bw.write('\t' + "Command Run: ShiftUp" + '\n');

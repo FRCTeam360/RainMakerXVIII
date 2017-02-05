@@ -1,38 +1,44 @@
 package org.usfirst.frc.team360.robot.commands;
-import org.usfirst.frc.team360.robot.Robot; 
-import edu.wpi.first.wpilibj.command.Command;
 
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team360.robot.*;
 /**
  *
  */
-public class CatapultDown extends Command {
-
-    public CatapultDown() {
+public class SetIntakeHeight extends Command {
+    public SetIntakeHeight() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.catapult);
+        requires(Robot.m_intakeHeight);
+    	//super("JoystickTankDrive");
     }
 
-    // Called just before this Command runs the first time
+	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.catapult.open();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Math.abs(OI.joyOI.getRawAxis(1)) >= .01){
+    		Robot.m_intakeHeight.setMotor(OI.joyOI.getRawAxis(1)*.5);
+    	} else {
+   		Robot.m_intakeHeight.stopMotor();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.m_intakeHeight.stopMotor();
     }
-
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

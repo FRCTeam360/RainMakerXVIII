@@ -34,12 +34,12 @@ public class Robot extends IterativeRobot {
 		public static DriveTrain drivetrain;
 		public static Pneumatics pneumatics;
 		public static OI oi;
+		public static IntakeHeight m_intakeHeight;
+		public static IntakeMotor m_intakeMotor;
+		public static DualWheelShooter m_dualWheelShooter;
 
 		public static Shifter shifter;
-		public static Catapult catapult;
 		public static NavX navX;
-		public static IntakeArms intakearm;
-		public static IntakeMotor intakemotor;
 		public static HardwareTimer RoboRioTimer;
 		public static Logger logger;
 		
@@ -58,15 +58,14 @@ public class Robot extends IterativeRobot {
 		public void robotInit() {
 			logger = new Logger();
 			shifter = new Shifter();
-			catapult = new Catapult();
-			intakearm = new IntakeArms();
-			intakemotor = new IntakeMotor();
 			drivetrain = new DriveTrain();
 			pneumatics = new Pneumatics();
 			getenc = new getEncs();
 			navX = new NavX();
 			RoboRioTimer = new HardwareTimer();
-			oi = new OI();
+			m_dualWheelShooter = new DualWheelShooter();
+			m_intakeMotor = new IntakeMotor();
+			m_intakeHeight = new IntakeHeight();
 			usbsave1 = new UsbSave2();
 			chooser = new SendableChooser();
 			SmartDashboard.putData("Auto mode", chooser);
@@ -170,8 +169,6 @@ public class Robot extends IterativeRobot {
 		@Override
 		public void teleopPeriodic() {
 			Scheduler.getInstance().run();
-			SmartDashboard.putBoolean("Catapult state", RobotMap.catapult.get());
-			SmartDashboard.putBoolean("Intake state", RobotMap.intake.get());
 			System.out.println(RobotMap.encL.get());
 			RobotMap.encL.reset();
 			if(i >= 50){
