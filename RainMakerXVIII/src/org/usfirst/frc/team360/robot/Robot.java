@@ -37,7 +37,8 @@ public class Robot extends IterativeRobot {
 		public static IntakeHeight m_intakeHeight;
 		public static IntakeMotor m_intakeMotor;
 		public static DualWheelShooter m_dualWheelShooter;
-
+		
+		public static Lights lights;
 		public static Shifter shifter;
 		public static NavX navX;
 		public static HardwareTimer RoboRioTimer;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
 		 */
 		@Override
 		public void robotInit() {
+			lights = new Lights();
 			logger = new Logger();
 			shifter = new Shifter();
 			drivetrain = new DriveTrain();
@@ -69,6 +71,8 @@ public class Robot extends IterativeRobot {
 			usbsave1 = new UsbSave2();
 			chooser = new SendableChooser();
 			SmartDashboard.putData("Auto mode", chooser);
+			
+			RobotMap.lights = new Relay(0);
 			
 			new Thread(() -> {
 				
