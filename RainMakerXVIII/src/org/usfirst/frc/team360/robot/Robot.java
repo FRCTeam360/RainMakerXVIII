@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.internal.HardwareTimer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -172,6 +173,7 @@ public class Robot extends IterativeRobot {
 		int i = 0;
 		@Override
 		public void teleopPeriodic() {
+			PowerDistributionPanel pdp = new PowerDistributionPanel();
 			Scheduler.getInstance().run();
 			System.out.println(RobotMap.encL.get());
 			RobotMap.encL.reset();
