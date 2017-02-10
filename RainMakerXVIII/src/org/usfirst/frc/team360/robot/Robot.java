@@ -173,7 +173,6 @@ public class Robot extends IterativeRobot {
 		int i = 0;
 		@Override
 		public void teleopPeriodic() {
-			PowerDistributionPanel pdp = new PowerDistributionPanel();
 			Scheduler.getInstance().run();
 			System.out.println(RobotMap.encL.get());
 			RobotMap.encL.reset();
