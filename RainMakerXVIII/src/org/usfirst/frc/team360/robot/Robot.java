@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.internal.HardwareTimer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.*;
@@ -38,7 +39,6 @@ public class Robot extends IterativeRobot {
 		public static IntakeHeight m_intakeHeight;
 		public static IntakeMotor m_intakeMotor;
 		public static DualWheelShooter m_dualWheelShooter;
-		
 		public static Lights lights;
 		public static Shifter shifter;
 		public static NavX navX;
@@ -46,17 +46,10 @@ public class Robot extends IterativeRobot {
 		public static Logger logger;
 		
 		Command getenc;
-		
 		Command usbsave1;
 		Command autonomousCommand;
-		//SendableChooser<Command> chooser = new SendableChooser<>();
 		SendableChooser chooser;
 		
-		/**
-		 * This function is run when the robot is first started up and should be
-		 * used for any initialization code.
-		 */
-		@Override
 		public void robotInit() {
 			lights = new Lights();
 			logger = new Logger();
@@ -70,8 +63,7 @@ public class Robot extends IterativeRobot {
 			m_intakeMotor = new IntakeMotor();
 			m_intakeHeight = new IntakeHeight();
 			usbsave1 = new UsbSave2();
-			chooser = new SendableChooser();
-			SmartDashboard.putData("Auto mode", chooser);
+			//SmartDashboard.putData("Auto mode", chooser);
 			
 			RobotMap.lights = new Relay(0);
 			
@@ -173,6 +165,7 @@ public class Robot extends IterativeRobot {
 		int i = 0;
 		@Override
 		public void teleopPeriodic() {
+			SmartDashboard.putNumber("Potentiometer", RobotMap.pot.get());
 			Scheduler.getInstance().run();
 			System.out.println(RobotMap.encL.get());
 			RobotMap.encL.reset();

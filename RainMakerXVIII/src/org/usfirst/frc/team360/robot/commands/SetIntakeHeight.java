@@ -28,13 +28,11 @@ public class SetIntakeHeight extends Command {
     	} else {
    		Robot.m_intakeHeight.stopMotor();
     	}
-    	
-    	PowerDistributionPanel pdp = new PowerDistributionPanel();
-		SmartDashboard.putNumber("Intake Height Motor PDP (amps)", pdp.getCurrent(15));
-		if (pdp.getCurrent(15) > 4.5 || ShouldBeStopped == true)  {
-			Robot.m_intakeHeight.stopMotor();
-			ShouldBeStopped = true;
-		}
+    	SmartDashboard.putNumber("Intake Height Motor PDP (amps)", RobotMap.pdp.getCurrent(15));
+    	if (RobotMap.pdp.getCurrent(15) > 4.5 || ShouldBeStopped == true)  {
+    		Robot.m_intakeHeight.stopMotor();
+    		ShouldBeStopped = true;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
