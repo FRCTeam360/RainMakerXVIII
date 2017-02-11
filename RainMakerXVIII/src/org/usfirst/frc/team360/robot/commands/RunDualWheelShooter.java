@@ -45,13 +45,6 @@ public class RunDualWheelShooter extends Command {
     	Robot.m_dualWheelShooter.setMotor(calculateMotor());
 		Robot.m_dualWheelShooter.resetEnc();
 		
-		PowerDistributionPanel pdp = new PowerDistributionPanel();
-		SmartDashboard.putNumber("Dual Wheel Shooter PDP (amps)", pdp.getCurrent(15));
-		if (pdp.getCurrent(15) > 4.5 || ShouldBeStopped == true)  {
-			Robot.m_dualWheelShooter.stopMotor();
-			ShouldBeStopped = true;
-		}
-		
     }
 
     // Make this return true when this Command no longer needs to run execute()
