@@ -1,5 +1,6 @@
 package org.usfirst.frc.team360.robot.commands;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,6 +23,7 @@ public class RunDualWheelShooter extends Command {
 	double setPointRPM = 3350;
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
+	boolean ShouldBeStopped;
     public RunDualWheelShooter() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.m_dualWheelShooter);
@@ -30,6 +32,7 @@ public class RunDualWheelShooter extends Command {
 
 	// Called just before this Command runs the first time
     protected void initialize() {
+    	ShouldBeStopped = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,6 +44,14 @@ public class RunDualWheelShooter extends Command {
 		System.out.println(findRPM());
     	Robot.m_dualWheelShooter.setMotor(calculateMotor());
 		Robot.m_dualWheelShooter.resetEnc();
+		
+		PowerDistributionPanel pdp = new PowerDistributionPanel();
+		SmartDashboard.putNumber("Dual Wheel Shooter PDP (amps)", pdp.getCurrent(15));
+		if (pdp.getCurrent(15) > 4.5 || ShouldBeStopped == true)  {
+			Robot.m_dualWheelShooter.stopMotor();
+			ShouldBeStopped = true;
+		}
+		
     }
 
     // Make this return true when this Command no longer needs to run execute()

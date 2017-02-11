@@ -1,5 +1,6 @@
 package org.usfirst.frc.team360.robot.commands;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -8,7 +9,9 @@ import org.usfirst.frc.team360.robot.*;
  *
  */
 public class SetIntakeHeight extends Command {
-    public SetIntakeHeight() {
+	boolean ShouldBeStopped;
+	
+	public SetIntakeHeight() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.m_intakeHeight);
     	//super("JoystickTankDrive");
@@ -25,6 +28,13 @@ public class SetIntakeHeight extends Command {
     	} else {
    		Robot.m_intakeHeight.stopMotor();
     	}
+    	
+    	PowerDistributionPanel pdp = new PowerDistributionPanel();
+		SmartDashboard.putNumber("Intake Height Motor PDP (amps)", pdp.getCurrent(15));
+		if (pdp.getCurrent(15) > 4.5 || ShouldBeStopped == true)  {
+			Robot.m_intakeHeight.stopMotor();
+			ShouldBeStopped = true;
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
