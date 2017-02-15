@@ -72,34 +72,17 @@ public class Robot extends IterativeRobot {
 			CvSink cvSink = CameraServer.getInstance().getVideo();
 			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
 
-			
 			Mat source = new Mat();
 			Mat output = new Mat();
 			
 			while (true) {
-			    BufferedImage out;
-			    cvSink.grabFrame(source);
-			    byte[] data = new byte[320 * 240 * (int)source.elemSize()];
-			    int type;
-			    source.get(0, 0, data);
-			    if(source.channels() == 1) {
-			    	type = BufferedImage.TYPE_BYTE_GRAY;
-			    } else {
-			    	type = BufferedImage.TYPE_3BYTE_BGR;
-			    }
-			    out = new BufferedImage(320, 240, type);
-			    out.getRaster().setDataElements(0, 0, 320, 240, data);
-			    data = ((DataBufferByte) out.getRaster().getDataBuffer()).getData();
-			    output.put(0, 0, data);
-			    Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-			    outputStream.putFrame(output);
 			    
-				/*cvSink.grabFrame(source);
+				cvSink.grabFrame(source);
 				BufferedImage blank = new BufferedImage(source.width(), source.height(), BufferedImage.TYPE_BYTE_GRAY);
 				byte[] data = ((DataBufferByte) blank.getRaster().getDataBuffer()).getData();
 				output.get(0, 0, data);
-				Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-				outputStream.putFrame(output);*/
+				//Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+				outputStream.putFrame(output);
 			}
 		}).start();
 		oi = new OI();
