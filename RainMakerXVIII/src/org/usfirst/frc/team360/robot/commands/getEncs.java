@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class getEncs extends Command {
+public class GetEncs extends Command {
 
-    public getEncs() {
+    public GetEncs() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
