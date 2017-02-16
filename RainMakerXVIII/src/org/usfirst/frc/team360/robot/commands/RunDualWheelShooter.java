@@ -30,17 +30,14 @@ public class RunDualWheelShooter extends Command {
 
 	// Called just before this Command runs the first time
     protected void initialize() {
+    	shouldRun = true;
+		Thread t = new Thread(new RPMDetecter());
+		t.start();
     }
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		SmartDashboard.putDouble("shooting encoder",Robot.m_dualWheelShooter.getEnc());
-
-		SmartDashboard.putDouble("shooting motor",RobotMap.dualWheelShooterMotor.get());
-		System.out.println(RobotMap.dualWheelShooterEncoder);
-		System.out.println(findRPM());
     	Robot.m_dualWheelShooter.setMotor(calculateMotor());
-		Robot.m_dualWheelShooter.resetEnc();
+		
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,33 +47,69 @@ public class RunDualWheelShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	shouldRun = false;
     	Robot.m_dualWheelShooter.stopMotor();
     }
-    public double findRPM(){
-		
-		return -1 * ((((double)Robot.m_dualWheelShooter.getEnc())/360)/.02)*60;
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    	end();
+    }
+    protected class RPMDetecter implements Runnable{
 
-}
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			while(shouldRun){
+			//	Thread t = new Thread(new Helper());
+			//	t.start();
+
+			SmartDashboard.putDouble("Shooter RPM", findRPM());
+			Robot.m_dualWheelShooter.resetEnc();
+				System.out.println("Dsa");
+				try{
+					Thread.sleep(20);
+				} catch(Exception e){
+					
+				}
+			}
+		}
+		protected class Helper implements Runnable{
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				SmartDashboard.putDouble("Shooter RPM", Robot.m_dualWheelShooter.getEnc());
+				Robot.m_dualWheelShooter.resetEnc();
+			}
+			
+		}
+    	
+    }
+    boolean shouldRun = false;
+    public double findRPM(){
+		return -1 * ((((double)Robot.m_dualWheelShooter.getEnc())/360)/.02)*60;
+    }
     protected double calculateMotor() {
     	t2 = t1;
     	t1 = t0;
     	t0 = findRPM();
     //	currentRPM = (t2+t1+t0)/3;
     	currentRPM = findRPM();
-		SmartDashboard.putDouble("shooting encoder RPM", currentRPM);
-    			SmartDashboard.putBoolean("PIDCOntrol stat", PIDControl);
+		//SmartDashboard.putDouble("shooting encoder RPM", currentRPM);
+    //			SmartDashboard.putBoolean("PIDCOntrol stat", PIDControl);
     	if(currentRPM > (.95 * setPointRPM) && !PIDControl){
        	 PIDControl = true;
        	}
     	if (PIDControl){
     		error = setPointRPM - currentRPM;
-    		SmartDashboard.putDouble("error" , error);
+    	//	SmartDashboard.putDouble("error" , error);
     		pAdjustment = error * RobotMap.pGainDualWheelShooter * RobotMap.gainMultiplierDualWheelShooter;
-    		SmartDashboard.putDouble("p" , pAdjustment);
+    	//	SmartDashboard.putDouble("p" , pAdjustment);
     		iAdjustment = error * RobotMap.iGainDualWheelShooter * RobotMap.gainMultiplierDualWheelShooter;
-    		SmartDashboard.putDouble("i" , iAdjustment);
+    	//	SmartDashboard.putDouble("i" , iAdjustment);
     		 dAdjustment = (error - last_Error) * RobotMap.dGainDualWheelShooter * RobotMap.gainMultiplierDualWheelShooter;
-    		 SmartDashboard.putDouble("d" , dAdjustment);
+    //		 SmartDashboard.putDouble("d" , dAdjustment);
     		last_Error = error;
     		
 			PID_Adjust = pAdjustment + iAdjustment + dAdjustment;
@@ -85,17 +118,12 @@ public class RunDualWheelShooter extends Command {
     	else{
     		shooterMotor = .71;
     	}
-    	shooterMotor = .2;
-    	SmartDashboard.putDouble("shooterMotor", shooterMotor);
+    	shooterMotor = .5;
+    //	SmartDashboard.putDouble("shooterMotor", shooterMotor);
     	if(shooterMotor >1){
     		shooterMotor = 1;
     	}
     	return shooterMotor;
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	end();
-    }
 }

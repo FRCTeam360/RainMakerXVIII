@@ -103,7 +103,7 @@ public class Robot extends IterativeRobot {
 		@Override
 		public void disabledInit() {
 			logger.closeLogger();
-
+			
 		}
 
 		@Override

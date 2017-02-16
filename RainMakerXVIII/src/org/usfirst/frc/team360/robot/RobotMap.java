@@ -42,7 +42,7 @@ public class RobotMap {
 
 	public static double gainMultiplierDualWheelShooter = 0.00001;
 	public static double pGainDualWheelShooter = 0.9;
-	public static double iGainDualWheelShooter = 0.1;
+	public static double iGainDualWheelShooter = 0.14;
 	public static double dGainDualWheelShooter = 0.02;
 	
 	public static boolean dangerZone = false;
