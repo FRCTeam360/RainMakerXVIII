@@ -1,15 +1,8 @@
 package org.usfirst.frc.team360.robot.commands;
 
-import org.usfirst.frc.team360.robot.Robot;
-
-import org.usfirst.frc.team360.robot.RobotMap;
-
-
-
+import org.usfirst.frc.team360.robot.*;
 import edu.wpi.first.wpilibj.Timer;
-
 import edu.wpi.first.wpilibj.command.Command;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CameraPIDAim extends Command {

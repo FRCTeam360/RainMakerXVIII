@@ -42,18 +42,26 @@ public class RobotMap {
 	public static VictorSP intakeMotor = new VictorSP(7);
 	
 	public static Encoder dualWheelShooterEncoder = new Encoder(4, 5);
-	
 	public static Encoder encR = new Encoder(2, 3);
 	public static Encoder encL = new Encoder(0, 1);
 
 	public static int encRReset = 0;
-	
 	public static int encLReset = 0;
 
-	public static double gainMultiplierDualWheelShooter = 0.00001;
-	public static double pGainDualWheelShooter = 0.9;
-	public static double iGainDualWheelShooter = 0.1;
-	public static double dGainDualWheelShooter = 0.02;
+	public static final double PIDShooterGainMultiplier = 0.00001;
+	public static final double PIDShooterP = 0.9;
+	public static final double PIDShooterI = 0.14;
+	public static final double PIDShooterD = 0.02;
+
+	public static final double PIDTurnMultiplier = 0.1;
+	public static final double PIDTurnP = 0.5;
+	public static final double PIDTurnI = 0.03;
+	public static final double PIDTurnD = 0.5;
+
+	public static final double PIDDriveStraightGainMultiplier = 0.15;
+	public static final double PIDDriveStraightP = 0.45;
+	public static final double PIDDriveStraightI = 0.012;
+	public static final double PIDDriveStraightD = 0.011;
 	
 	public static boolean dangerZone = false;
 	public static DoubleSolenoid shifter = new DoubleSolenoid(0, 1);

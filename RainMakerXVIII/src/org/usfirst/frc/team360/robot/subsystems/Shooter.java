@@ -1,8 +1,7 @@
 package org.usfirst.frc.team360.robot.subsystems;
 
 import org.usfirst.frc.team360.robot.RobotMap;
-import org.usfirst.frc.team360.robot.commands.RunDualWheelShooter;
-import org.usfirst.frc.team360.robot.commands.SetIntakeHeight;
+import org.usfirst.frc.team360.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -11,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DualWheelShooter extends Subsystem {
+public class Shooter extends Subsystem {
 	VictorSP m_dualWheelShooterMotor = RobotMap.dualWheelShooterMotor;
 	Encoder m_dualWheelEncoder = RobotMap.dualWheelShooterEncoder;
     // Put methods for controlling this subsystem
@@ -31,7 +30,7 @@ public class DualWheelShooter extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new RunDualWheelShooter());
+        setDefaultCommand(new RunShooter());
     }
     
 }

@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team360.robot.Robot;
 
-public class UsbSave2 extends Command {
-    public UsbSave2() {
+public class UsbSave extends Command {
+    public UsbSave() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
@@ -23,7 +23,7 @@ public class UsbSave2 extends Command {
     	Robot.logger.logTime();
     	Robot.logger.logEncoders();
     	Robot.logger.logSpeed();
-    	Robot.logger.logshifter();
+    	Robot.logger.logShifter();
     	}catch(Exception e){
     		
     	}

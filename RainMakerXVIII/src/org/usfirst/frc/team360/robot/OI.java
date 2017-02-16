@@ -1,9 +1,7 @@
 package org.usfirst.frc.team360.robot;
 
-import org.usfirst.frc.team360.robot.commands.ShiftDown;
-import org.usfirst.frc.team360.robot.commands.ShiftUp;
-import org.usfirst.frc.team360.robot.commands.SwitchDirection;
-import org.usfirst.frc.team360.robot.triggers.DoubleButton;
+import org.usfirst.frc.team360.robot.commands.*;
+import org.usfirst.frc.team360.robot.triggers.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

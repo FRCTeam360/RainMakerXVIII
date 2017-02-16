@@ -51,7 +51,6 @@ public class DriveTrain extends Subsystem {
 	}
 	public void softResetL(){
 		RobotMap.encLReset = getLHardEnc();
-		
 	}
 	
 	public void drive(double RMotor, double LMotor) {

@@ -138,7 +138,7 @@ public class Logger extends Subsystem {
 		}
 		
 	}
-	public void logshifter(){
+	public void logShifter(){
 		shifterValue = RobotMap.shifter.get();
 		try{
 			if(shifterValue != shifterOldValue){
@@ -151,7 +151,7 @@ public class Logger extends Subsystem {
 			e.printStackTrace();
 		}
 	}
-	public void lognavX(){
+	public void logNavXValue(){
 		navXValue = RobotMap.navX.getAngle();
 		try{
 			if(navXValue != navXOldValue){
@@ -171,57 +171,9 @@ public class Logger extends Subsystem {
 		}
 
 	}
-	public void logCatapultDown(){
-		try{
-			bw.write('\t' + "Command Run: CatapultDown" + '\n');
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-	}
-	public void logCatapultUp(){
-		try{
-			bw.write('\t' + "Command Run: CatapultUp" + '\n');
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-	}
 	public void logNavX(){
 		try{
 			bw.write('\t' + "Command Run: NavX" + '\n');
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-	}
-	public void logIntakeArmDown(){
-		try{
-			bw.write('\t' + "Command Run: IntakeArmDown" + '\n');
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-	}
-	public void logIntakeArmUp(){
-		try{
-			bw.write('\t' + "Command Run: IntakeArmUp" + '\n');
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-	}
-	public void logIntakeMotors(){
-		try{
-			bw.write('\t' + "Command Run: IntakeMotors" + '\n');
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-	}
-	public void logIntakeMotorsOut(){
-		try{
-			bw.write('\t' + "Command Run: IntakeMotorsOut" + '\n');
 		}catch (Exception e){
 			e.printStackTrace();
 		}

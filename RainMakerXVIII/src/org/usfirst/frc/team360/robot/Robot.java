@@ -5,17 +5,8 @@ import java.awt.image.DataBufferByte;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team360.robot.commands.UsbSave2;
-import org.usfirst.frc.team360.robot.commands.getEncs;
-import org.usfirst.frc.team360.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team360.robot.subsystems.DualWheelShooter;
-import org.usfirst.frc.team360.robot.subsystems.IntakeHeight;
-import org.usfirst.frc.team360.robot.subsystems.IntakeMotor;
-import org.usfirst.frc.team360.robot.subsystems.Lights;
-import org.usfirst.frc.team360.robot.subsystems.Logger;
-import org.usfirst.frc.team360.robot.subsystems.NavX;
-import org.usfirst.frc.team360.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team360.robot.subsystems.Shifter;
+import org.usfirst.frc.team360.robot.commands.*;
+import org.usfirst.frc.team360.robot.subsystems.*;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -35,15 +26,15 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static IntakeHeight m_intakeHeight;
 	public static IntakeMotor m_intakeMotor;
-	public static DualWheelShooter m_dualWheelShooter;
+	public static Shooter m_shooter;
 	public static Lights lights;
 	public static Shifter shifter;
 	public static NavX navX;
 	public static HardwareTimer RoboRioTimer;
 	public static Logger logger;
 
-	Command getenc;
-	Command usbsave1;
+	Command getEnc;
+	Command m_USBSave;
 	Command autonomousCommand;
 	// SendableChooser chooser;
 
@@ -54,13 +45,13 @@ public class Robot extends IterativeRobot {
 		shifter = new Shifter();
 		drivetrain = new DriveTrain();
 		pneumatics = new Pneumatics();
-		getenc = new getEncs();
+		getEnc = new GetEncs();
 		navX = new NavX();
 		RoboRioTimer = new HardwareTimer();
-		m_dualWheelShooter = new DualWheelShooter();
+		m_shooter = new Shooter();
 		m_intakeMotor = new IntakeMotor();
 		m_intakeHeight = new IntakeHeight();
-		usbsave1 = new UsbSave2();
+		m_USBSave = new UsbSave();
 		// SmartDashboard.putData("Auto mode", chooser);
 
 		RobotMap.lights = new Relay(0);
@@ -76,9 +67,6 @@ public class Robot extends IterativeRobot {
 
 			while (true) {
 				cvSink.grabFrame(source);
-				BufferedImage blank = new BufferedImage(source.width(), source.height(), BufferedImage.TYPE_BYTE_GRAY);
-				byte[] data = ((DataBufferByte) blank.getRaster().getDataBuffer()).getData();
-				output.get(0, 0, data);
 				Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
 				outputStream.putFrame(output);
 			}
@@ -149,7 +137,7 @@ public class Robot extends IterativeRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		logger.initLogger();
-		usbsave1.start();
+		m_USBSave.start();
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
@@ -161,24 +149,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("Potentiometer", RobotMap.pot.get());
 		Scheduler.getInstance().run();
-		System.out.println(RobotMap.encL.get());
-		RobotMap.encL.reset();
-		if (i >= 50) {
-			// SmartDashboard.putDouble("leqweft enc",
-			// drivetrain.getLSoftEnc());
-			// SmartDashboard.putDouble("rigeqwht enc",
-			// drivetrain.getRSoftEnc())
-			System.out.println(drivetrain.getLSoftEnc());
-			;
-
-			drivetrain.softResetL();
-			drivetrain.softResetR();
-			i++;
-		} else {
-			i = 0;
-		}
 	}
 
 	/**
