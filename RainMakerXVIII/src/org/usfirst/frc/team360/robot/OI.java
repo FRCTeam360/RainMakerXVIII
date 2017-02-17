@@ -6,6 +6,7 @@ import org.usfirst.frc.team360.robot.triggers.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
@@ -18,11 +19,14 @@ public class OI {
 	    public static Joystick joyOI = new Joystick(2);
 	    
 	    public static Button buttonDriveUp = new JoystickButton(joyR, 1);
-	    public static Button buttonDriveDown = new JoystickButton(joyL, 1);;
+	    public static Button buttonDriveDown = new JoystickButton(joyL, 1);
 	    public static Button buttonSwitch = new JoystickButton(joyR, 2);
+	    public static Button buttonStartShooter = new JoystickButton(joyOI, 6);
+	    Command runShooter = new RunShooter();
 	    public OI(){
 	    	buttonSwitch.whenPressed(new SwitchDirection());
 	    	buttonDriveUp.whenPressed(new ShiftUp());
 	    	buttonDriveDown.whenPressed(new ShiftDown());
+	    	buttonStartShooter.whileHeld(runShooter);
 	    }
 }

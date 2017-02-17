@@ -9,7 +9,7 @@ import org.usfirst.frc.team360.robot.*;
  */
 public class RunShooter extends Command {
 	boolean PIDControl = true;
-	double currentRPM = 0;
+	static double currentRPM = 0;
 	double t0 = 0;
 	double t1 = 0;
 	double t2 = 0;
@@ -22,10 +22,10 @@ public class RunShooter extends Command {
 	double setPointRPM = 3350;
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
+    boolean shouldRun = false;
     public RunShooter() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.m_shooter);
-    	//super("JoystickTankDrive");
     }
 
 	// Called just before this Command runs the first time
@@ -37,6 +37,7 @@ public class RunShooter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.m_shooter.setMotor(calculateMotor());
+    	SmartDashboard.putNumber("shooter Speed", RobotMap.dualWheelShooterMotor.get());
 		
     }
 
@@ -47,8 +48,8 @@ public class RunShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shouldRun = false;
     	Robot.m_shooter.stopMotor();
+    	shouldRun = false;
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
@@ -63,10 +64,9 @@ public class RunShooter extends Command {
 			while(shouldRun){
 			//	Thread t = new Thread(new Helper());
 			//	t.start();
-
-			SmartDashboard.putDouble("Shooter RPM", findRPM());
-			Robot.m_shooter.resetEnc();
-				System.out.println("Dsa");
+				currentRPM = findRPM();
+				SmartDashboard.putDouble("Shooter RPM", currentRPM);
+				Robot.m_shooter.resetEnc();
 				try{
 					Thread.sleep(20);
 				} catch(Exception e){
@@ -74,30 +74,22 @@ public class RunShooter extends Command {
 				}
 			}
 		}
-		protected class Helper implements Runnable{
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				SmartDashboard.putDouble("Shooter RPM", Robot.m_shooter.getEnc());
-				Robot.m_shooter.resetEnc();
-			}
-			
-		}
+//		protected class Helper implements Runnable{
+//
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				SmartDashboard.putDouble("Shooter RPM", Robot.m_shooter.getEnc());
+//				Robot.m_shooter.resetEnc();
+//			}
+//			
+//		}
     	
     }
-    boolean shouldRun = false;
     public double findRPM(){
 		return -1 * ((((double)Robot.m_shooter.getEnc())/360)/.02)*60;
     }
     protected double calculateMotor() {
-    	t2 = t1;
-    	t1 = t0;
-    	t0 = findRPM();
-    //	currentRPM = (t2+t1+t0)/3;
-    	currentRPM = findRPM();
-		//SmartDashboard.putDouble("shooting encoder RPM", currentRPM);
-    //			SmartDashboard.putBoolean("PIDCOntrol stat", PIDControl);
     	if(currentRPM > (.95 * setPointRPM) && !PIDControl){
        	 PIDControl = true;
        	}

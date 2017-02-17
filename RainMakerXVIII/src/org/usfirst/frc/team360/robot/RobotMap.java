@@ -37,9 +37,12 @@ public class RobotMap {
 	public static VictorSP motorR2 = new VictorSP(1);
 	public static VictorSP motorL1 = new VictorSP(2);
 	public static VictorSP motorL2 = new VictorSP(3);
-	public static VictorSP dualWheelShooterMotor = new VictorSP(5);
-	public static VictorSP intakeHeight = new VictorSP(6);
-	public static VictorSP intakeMotor = new VictorSP(7);
+	public static VictorSP intakeHeight = new VictorSP(4);
+	public static VictorSP intakeMotor = new VictorSP(5);
+	public static VictorSP dualWheelShooterMotor = new VictorSP(6);
+	public static VictorSP ballIntake = new VictorSP(7);
+	public static VictorSP hangerMotor1 = new VictorSP(8);
+	public static VictorSP hangerMotor2 = new VictorSP(9);
 	
 	public static Encoder dualWheelShooterEncoder = new Encoder(4, 5);
 	public static Encoder encR = new Encoder(2, 3);

@@ -30,7 +30,7 @@ public class Shooter extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new RunShooter());
+        //setDefaultCommand(new RunShooter());
     }
     
 }

@@ -32,6 +32,8 @@ public class Robot extends IterativeRobot {
 	public static NavX navX;
 	public static HardwareTimer RoboRioTimer;
 	public static Logger logger;
+	public static Hanger hanger;
+	public static BallIntake ballIntake;
 
 	Command getEnc;
 	Command m_USBSave;
@@ -52,6 +54,8 @@ public class Robot extends IterativeRobot {
 		m_intakeMotor = new IntakeMotor();
 		m_intakeHeight = new IntakeHeight();
 		m_USBSave = new UsbSave();
+		hanger = new Hanger();
+		ballIntake = new BallIntake();
 		// SmartDashboard.putData("Auto mode", chooser);
 
 		RobotMap.lights = new Relay(0);
