@@ -12,13 +12,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SwitchDirection extends Command {
-	double timeWait = .02;
+public class DriveTimeBangBang extends Command {
+	double timeWait = 0;
+	double speed = 0;
 	Timer time;
-    public SwitchDirection() {
+    public DriveTimeBangBang(double speed, double timeWait) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
+    	this.timeWait = timeWait;
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -29,10 +32,7 @@ public class SwitchDirection extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.oi.joyR.getRawAxis(1)) <= .3 && Math.abs(Robot.oi.joyL.getRawAxis(1)) <= .3){
-    		timeWait = .25;
-    		RobotMap.driveForward = ! RobotMap.driveForward;
-    	} 
+    	Robot.drivetrain.drive(speed, speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,10 +42,12 @@ public class SwitchDirection extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

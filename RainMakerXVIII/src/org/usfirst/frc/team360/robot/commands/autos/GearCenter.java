@@ -6,16 +6,20 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class ExampleAuto extends CommandGroup {
+public class GearCenter extends CommandGroup {
 
-    public  ExampleAuto() {
+    public  GearCenter() {
+    	addParallel(new MoveGearIntake(95, 1));
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
-//    	addSequential(new DriveStraightPID(.95, 180, 200));
+    	addSequential(new DriveStraightPID(-.95, 0, 63));
+    	addSequential(new DriveStraightPID(-.5, 0, 4));
+    	addSequential(new WaitCommand(.5));
+    	addSequential(new DropGear());
+    	addSequential(new DriveStraightPID(.95, 0, 24));
 //    	addSequential(new DriveStraightPID(.95, 180, 2382));
 //    	addSequential(new PIDNavXTurn(245));
 //    	addSequential(new DriveStraightPID(.95, 245, 3386));
 //    	addSequential(new PIDNavXTurn(180));
-    	addSequential(new PIDNavXTurn(90));
     }
 }

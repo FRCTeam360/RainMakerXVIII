@@ -20,13 +20,26 @@ public class OI {
 	    
 	    public static Button buttonDriveUp = new JoystickButton(joyR, 1);
 	    public static Button buttonDriveDown = new JoystickButton(joyL, 1);
+	    public static Button buttonDriveStraight1 = new JoystickButton(joyL, 7);
+	    public static Button buttonDriveStraight2 = new JoystickButton(joyR, 7);
+	    public static Button buttonResetDriveEncoders = new JoystickButton(joyL, 3);
 	    public static Button buttonSwitch = new JoystickButton(joyR, 2);
 	    public static Button buttonStartShooter = new JoystickButton(joyOI, 6);
-	    Command runShooter = new RunShooter();
+	    public static Button buttonIntakeGearFromGround = new JoystickButton(joyOI, 1);
+	    public static Button buttonDropGear = new JoystickButton(joyOI, 2);
+	    public static Button buttonMoveIntakeToMiddle = new JoystickButton(joyOI, 3);
+	    public static Button buttonIntakeGearFromDriverStation = new JoystickButton(joyOI, 4);
+	    //Command runShooter = new RunShooter();
+	    Command intakeGear = new IntakeGearFromGround();
 	    public OI(){
 	    	buttonSwitch.whenPressed(new SwitchDirection());
 	    	buttonDriveUp.whenPressed(new ShiftUp());
+	    	buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
 	    	buttonDriveDown.whenPressed(new ShiftDown());
-	    	buttonStartShooter.whileHeld(runShooter);
+	    	buttonDropGear.whenPressed(new DropGear());
+	    	buttonStartShooter.whileHeld(new RunShooter());
+	    	buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(175, 1));
+	    	buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
+	    	buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
 	    }
 }

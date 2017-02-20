@@ -14,22 +14,25 @@ public class DriveStraightPID extends Command {
 		double distance = 0;
 	    double error = 0;
 	    double pAdjustment = 0;
-	    double iAdjustment = 0;
+	    double iAdjustment = -.01;
 	    double dAdjustment = 0;
 	    double lastError = 0;
 	    double PIDAdjustment = 0;
 	    
     public DriveStraightPID(double motorSpeed, double direction, double distance) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	this.motorSpeed = motorSpeed;
+        // eg. requires(chassis);][\
+    	
+    	this.motorSpeed = -1 * motorSpeed;
     	this.direction = direction;
-    	this.distance = distance;
+    	this.distance = distance * RobotMap.encoderCountsLeftToFeet;
     	requires(Robot.drivetrain);
     }
     // Called just before this Command runs the first time
     @Override
 	protected void initialize() {
+    	Robot.drivetrain.resetEncs();
+    	Robot.navX.resetNavX();
     	dAdjustment = 0;
     	if(motorSpeed > 0){
     		//iAdjustment = 0.25;
@@ -37,6 +40,7 @@ public class DriveStraightPID extends Command {
     	} else {
     	//	practiceBotBack();
     	}
+    	iAdjustment = -.01;
     	pAdjustment = 0;
     	error = 0;
     	lastError = 0;
@@ -53,15 +57,16 @@ public class DriveStraightPID extends Command {
     	dAdjustment = (error - lastError) * RobotMap.PIDDriveStraightD * RobotMap.PIDDriveStraightGainMultiplier;
     	lastError = error;
     	PIDAdjustment = pAdjustment + iAdjustment + dAdjustment;
-    	Robot.drivetrain.driveR(motorSpeed - PIDAdjustment);
-    	Robot.drivetrain.driveL(motorSpeed + PIDAdjustment);
+    	SmartDashboard.putNumber("Integral", iAdjustment);
+    	Robot.drivetrain.driveR(motorSpeed + PIDAdjustment);
+    	Robot.drivetrain.driveL(motorSpeed - PIDAdjustment);
     	SmartDashboard.putNumber("IAdjustment", iAdjustment);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
 	protected boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getRSoftEnc()) > Math.abs(distance);
+        return Math.abs(Robot.drivetrain.getLSoftEnc()) > Math.abs(distance);
     }
 
     // Called once after isFinished returns true

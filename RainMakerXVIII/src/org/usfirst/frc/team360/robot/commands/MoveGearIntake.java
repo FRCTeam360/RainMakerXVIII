@@ -12,40 +12,43 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SwitchDirection extends Command {
-	double timeWait = .02;
-	Timer time;
-    public SwitchDirection() {
+public class MoveGearIntake extends Command {
+	double distance = 0;
+	double sensitivity = 0;
+    public MoveGearIntake(double distance, double sensitivity) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drivetrain);
+    	this.sensitivity = sensitivity;
+    	this.distance = distance;
+    	requires(Robot.m_intakeHeight);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	time = new Timer();
-    	time.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.oi.joyR.getRawAxis(1)) <= .3 && Math.abs(Robot.oi.joyL.getRawAxis(1)) <= .3){
-    		timeWait = .25;
-    		RobotMap.driveForward = ! RobotMap.driveForward;
-    	} 
+    	if(Robot.m_intakeHeight.potentiometerValue() > distance){
+        	Robot.m_intakeHeight.setMotor(.65);
+    	}else{
+    	Robot.m_intakeHeight.setMotor(-.65);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timeWait < time.get();
+        return Robot.m_intakeHeight.potentiometerValue() > distance - sensitivity && Robot.m_intakeHeight.potentiometerValue() < distance + sensitivity;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.m_intakeHeight.stopMotor();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

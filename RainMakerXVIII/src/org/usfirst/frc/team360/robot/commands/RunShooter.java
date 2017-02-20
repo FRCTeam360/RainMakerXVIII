@@ -19,7 +19,7 @@ public class RunShooter extends Command {
 	double iAdjustment = 0;
 	double dAdjustment = 0;
 	double PID_Adjust = 0;
-	double setPointRPM = 3350;
+	double setPointRPM = 3375;
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
     boolean shouldRun = false;
@@ -30,6 +30,8 @@ public class RunShooter extends Command {
 
 	// Called just before this Command runs the first time
     protected void initialize() {
+		Robot.m_shooter.resetEnc();
+    	iAdjustment = 0;
     	shouldRun = true;
 		Thread t = new Thread(new RPMDetecter());
 		t.start();
@@ -37,9 +39,10 @@ public class RunShooter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.m_shooter.setMotor(calculateMotor());
-    	SmartDashboard.putNumber("shooter Speed", RobotMap.dualWheelShooterMotor.get());
+    	SmartDashboard.putNumber("shooter motor", RobotMap.shooterMotor.get());
 		
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -65,7 +68,7 @@ public class RunShooter extends Command {
 			//	Thread t = new Thread(new Helper());
 			//	t.start();
 				currentRPM = findRPM();
-				SmartDashboard.putDouble("Shooter RPM", currentRPM);
+				SmartDashboard.putDouble("Shooter's RPM", currentRPM);
 				Robot.m_shooter.resetEnc();
 				try{
 					Thread.sleep(20);
@@ -90,18 +93,23 @@ public class RunShooter extends Command {
 		return -1 * ((((double)Robot.m_shooter.getEnc())/360)/.02)*60;
     }
     protected double calculateMotor() {
+    	PIDControl = true;
     	if(currentRPM > (.95 * setPointRPM) && !PIDControl){
        	 PIDControl = true;
        	}
     	if (PIDControl){
+    		//RobotMap.PIDShooterGainMultiplier = 0.00001
+    		// RobotMap.PIDShooterP = .09
+    		// RobotMap.PIDShooterI = 0
+    		 //RobotMap.PIDShooterD = 0.02
     		error = setPointRPM - currentRPM;
-    	//	SmartDashboard.putDouble("error" , error);
+    		//SmartDashboard.putDouble("error" , error);
     		pAdjustment = error * RobotMap.PIDShooterP * RobotMap.PIDShooterGainMultiplier;
-    	//	SmartDashboard.putDouble("p" , pAdjustment);
+    		//SmartDashboard.putDouble("p" , pAdjustment);
     		iAdjustment = error * RobotMap.PIDShooterI * RobotMap.PIDShooterGainMultiplier;
-    	//	SmartDashboard.putDouble("i" , iAdjustment);
+    		//SmartDashboard.putDouble("i" , iAdjustment);
     		 dAdjustment = (error - last_Error) * RobotMap.PIDShooterD * RobotMap.PIDShooterGainMultiplier;
-    //		 SmartDashboard.putDouble("d" , dAdjustment);
+    		// SmartDashboard.putDouble("d" , dAdjustment);
     		last_Error = error;
     		
 			PID_Adjust = pAdjustment + iAdjustment + dAdjustment;
@@ -110,10 +118,12 @@ public class RunShooter extends Command {
     	else{
     		shooterMotor = .71;
     	}
-    	shooterMotor = .5;
-    //	SmartDashboard.putDouble("shooterMotor", shooterMotor);
+    	//SmartDashboard.putDouble("shooterMotor", shooterMotor);
     	if(shooterMotor >1){
     		shooterMotor = 1;
+    	} else if(shooterMotor < -.1){
+    		SmartDashboard.putNumber("bad value", shooterMotor);
+    		shooterMotor=0;
     	}
     	return shooterMotor;
     }

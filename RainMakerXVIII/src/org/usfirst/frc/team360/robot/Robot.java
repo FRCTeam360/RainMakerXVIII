@@ -6,6 +6,9 @@ import java.awt.image.DataBufferByte;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team360.robot.commands.*;
+import org.usfirst.frc.team360.robot.commands.autos.ExampleAuto;
+import org.usfirst.frc.team360.robot.commands.autos.GearCenter;
+import org.usfirst.frc.team360.robot.commands.autos.GearRight;
 import org.usfirst.frc.team360.robot.subsystems.*;
 
 import edu.wpi.cscore.CvSink;
@@ -92,6 +95,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("navx angle", RobotMap.navX.getAngle());
+		SmartDashboard.putNumber("navx pitch",RobotMap.navX.getPitch());
+		SmartDashboard.putNumber("navx roll", RobotMap.navX.getRoll());
+		SmartDashboard.putNumber("navx yaw", RobotMap.navX.getYaw());
 	}
 
 	/**
@@ -119,6 +126,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
+		autonomousCommand = new GearRight();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -129,6 +137,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Left Encoder", drivetrain.getLHardEnc());
+		SmartDashboard.putNumber("Right Encoder", drivetrain.getRHardEnc());
 	}
 
 	@Override
@@ -154,7 +164,19 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		System.out.println(RobotMap.shooterEncoder.get());
+		SmartDashboard.putNumber("Arm Pot", RobotMap.pot.get());
+//		SmartDashboard.putNumber("Left Motor Currect", RobotMap.pdp.getCurrent(1));
+//		SmartDashboard.putNumber("Right Motor Currect", RobotMap.pdp.getCurrent(3));
+//		SmartDashboard.putNumber("Intake Motor Currect", RobotMap.pdp.getCurrent(12));
+		SmartDashboard.putNumber("Left Encoder", drivetrain.getLHardEnc());
+		SmartDashboard.putNumber("Right Encoder", drivetrain.getRHardEnc());
+//		SmartDashboard.putNumber("navx angle", RobotMap.navX.getAngle());
+//		SmartDashboard.putNumber("navx pitch",RobotMap.navX.getPitch());
+//		SmartDashboard.putNumber("navx roll", RobotMap.navX.getRoll());
+//		SmartDashboard.putNumber("navx yaw", RobotMap.navX.getYaw());
 	}
+	
 
 	/**
 	 * This function is called periodically during test mode

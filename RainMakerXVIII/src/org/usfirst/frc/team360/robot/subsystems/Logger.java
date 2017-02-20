@@ -109,8 +109,8 @@ public class Logger extends Subsystem {
 	}
 	public void logEncoders(){
 		try{
-			encValRightValue = RobotMap.encR.get();
-			encValLeftValue = RobotMap.encL.get();
+			encValRightValue = RobotMap.driveTrainEncoderRight.get();
+			encValLeftValue = RobotMap.driveTrainEncoderLeft.get();
 			if(encValRightValue != encRightOldValue || encValLeftValue != encValLeftOldValue){
 				encValLeftOldValue = encValLeftValue;
 				encRightOldValue = encValRightValue;

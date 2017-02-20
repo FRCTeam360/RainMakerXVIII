@@ -11,21 +11,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Shooter extends Subsystem {
-	VictorSP m_dualWheelShooterMotor = RobotMap.dualWheelShooterMotor;
-	Encoder m_dualWheelEncoder = RobotMap.dualWheelShooterEncoder;
+	VictorSP shooterMotor = RobotMap.shooterMotor;
+	Encoder shooterEncoder = RobotMap.shooterEncoder;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public int getEnc(){
-		return m_dualWheelEncoder.get();
+		return shooterEncoder.get();
 	}
 	public void resetEnc(){
-		m_dualWheelEncoder.reset();
+		shooterEncoder.reset();
 	}
 	public void setMotor(double speed){
-		m_dualWheelShooterMotor.set(speed);
+		shooterMotor.set(speed);
 	}
 	public void stopMotor(){
-		m_dualWheelShooterMotor.set(0);
+		shooterMotor.set(0);
 	}
 	
     public void initDefaultCommand() {

@@ -14,58 +14,58 @@ public class DriveTrain extends Subsystem {
 	VictorSP motorR2 = RobotMap.motorR2;
 	VictorSP motorL1 = RobotMap.motorL1;
 	VictorSP motorL2 = RobotMap.motorL2;
-	Encoder encR = RobotMap.encR;
-	Encoder encL = RobotMap.encL;
+	Encoder driveTrainEncoderLeft = RobotMap.driveTrainEncoderLeft;
+	Encoder driveTrainEncoderRight = RobotMap.driveTrainEncoderRight;
 
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public DriveTrain(){
-		encL.reset();
-		encR.reset();
+		driveTrainEncoderLeft.reset();
+		driveTrainEncoderRight.reset();
 	}
 	public void resetRHardEnc(){
-		encR.reset();
+		driveTrainEncoderRight.reset();
 	}
 	public void resetLHardEnc(){
-		encL.reset();
+		driveTrainEncoderLeft.reset();
 	}
 	public void resetEncs(){
-		encL.reset();
-		encR.reset();
+		driveTrainEncoderLeft.reset();
+		driveTrainEncoderRight.reset();
 	}
 	public int getRSoftEnc(){
-		return encR.get();
+		return driveTrainEncoderRight.get() - RobotMap.driveTrainEncoderRightReset;
 	}
 	public int getLSoftEnc(){
-		return encR.get();
+		return driveTrainEncoderLeft.get() - RobotMap.driveTrainEncoderLeftReset;
 	}
 	public int getRHardEnc(){
-		return encR.get();
+		return driveTrainEncoderRight.get();
 	}
 	public int getLHardEnc(){
-		return encR.get();
+		return driveTrainEncoderLeft.get();
 	}
 	public void softResetR(){
-		RobotMap.encRReset = getRHardEnc();
+		RobotMap.driveTrainEncoderRightReset = getRHardEnc();
 			
 	}
 	public void softResetL(){
-		RobotMap.encLReset = getLHardEnc();
+		RobotMap.driveTrainEncoderLeftReset = getLHardEnc();
 	}
 	
 	public void drive(double RMotor, double LMotor) {
-		  motorR1.set(RMotor);
-		  motorR2.set(RMotor);
-		  motorL1.set(-LMotor);
-		  motorL2.set(-LMotor);
+		  motorR1.set(-RMotor);
+		  motorR2.set(-RMotor);
+		  motorL1.set(LMotor);
+		  motorL2.set(LMotor);
 	  }
 	  public void driveR(double RMotor){
-		  motorL1.set(RMotor);
-		  motorL2.set(RMotor);
+		  motorR1.set(-RMotor);
+		  motorR2.set(-RMotor);
 	  }
 	  public void driveL(double LMotor){
-		  motorR1.set(-LMotor);
-		  motorR2.set(-LMotor);
+		  motorL1.set(LMotor);
+		  motorL2.set(LMotor);
 	  }
 	  public void stopR(){
 		  motorR1.stopMotor();
