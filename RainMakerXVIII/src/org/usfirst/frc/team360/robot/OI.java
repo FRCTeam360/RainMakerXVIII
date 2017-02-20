@@ -30,16 +30,16 @@ public class OI {
 	    public static Button buttonMoveIntakeToMiddle = new JoystickButton(joyOI, 3);
 	    public static Button buttonIntakeGearFromDriverStation = new JoystickButton(joyOI, 4);
 	    //Command runShooter = new RunShooter();
-	    Command intakeGear = new IntakeGearFromGround();
-	    public OI(){
-	    	buttonSwitch.whenPressed(new SwitchDirection());
-	    	buttonDriveUp.whenPressed(new ShiftUp());
-	    	buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
-	    	buttonDriveDown.whenPressed(new ShiftDown());
-	    	buttonDropGear.whenPressed(new DropGear());
-	    	buttonStartShooter.whileHeld(new RunShooter());
-	    	buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(175, 1));
-	    	buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
-	    	buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
-	    }
+//	    Command intakeGear = new IntakeGearFromGround();
+//	    public OI(){
+//	    	buttonSwitch.whenPressed(new SwitchDirection());
+//	    	buttonDriveUp.whenPressed(new ShiftUp());
+//	    	buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
+//	    	buttonDriveDown.whenPressed(new ShiftDown());
+//	    	buttonDropGear.whenPressed(new DropGear());
+//	    	buttonStartShooter.whileHeld(new RunShooter());
+//	    	buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(175, 1));
+//	    	buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
+//	    	buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
+//	    }
 }
