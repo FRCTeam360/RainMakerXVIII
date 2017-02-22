@@ -31,14 +31,26 @@ public class Logger extends Subsystem {
 	double motorR1OldValue;
 	double motorL1Value;
 	double motorL1OldValue;
+	double hangerMotor1Value;
+	double hangerMotor1OldValue;
+	double hangerMotor2Value;
+	double hangerMotor2OldValue;
 	Value shifterValue;
 	Value shifterOldValue;
 	double navXValue;
 	double navXOldValue;
-	boolean intakeValue;
-	boolean intakeOldValue;
+	double intakeMotorValue;
+	double intakeMotorOldValue;
+	double intakeHeightValue;
+	double intakeHeightOldValue;
+	double shooterMotorValue;
+	double shooterMotorOldValue;
+	double ballIntakeValue;
+	double ballIntakeOldValue;
 	boolean catapultValue;
 	boolean catapultOldValue;
+	double potentiometerValue;
+	double potentiometerOldValue;
 
 	
 	boolean canStop = false;
@@ -49,8 +61,14 @@ public class Logger extends Subsystem {
 	String speedMessage;//the speed
 	String shifterMessage;//Super Shifter position
 	String navXMessage;
-	String intakeMessage;
+	String intakeMotorMessage;
+	String intakeHeightMessage;
 	String catapultMessage;
+	String hanger1Message;
+	String hanger2Message;
+	String shooterMotorMessage;
+	String ballIntakeMessage;
+	String potentiometerMessage;
 	
 	public void initLogger(){
 		try {
@@ -65,10 +83,17 @@ public class Logger extends Subsystem {
 			motorL1OldValue = 0;
 			navXValue = 0;
 			navXOldValue = 0;
-			intakeValue = false;
-			intakeOldValue = false;
+			intakeMotorValue = 0;
+			intakeMotorOldValue = 0;
+			intakeHeightValue = 0;
+			intakeHeightOldValue = 0;
 			catapultValue = false;
 			catapultOldValue = false;
+			hangerMotor1Value = 0;
+			hangerMotor1OldValue = 0;
+			hangerMotor2Value = 0;
+			hangerMotor2OldValue = 0;
+			potentiometerValue = 0;
 			DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 			Date date = new Date();
 			System.out.println(dateFormat.format(date));
@@ -202,6 +227,97 @@ public class Logger extends Subsystem {
 			e.printStackTrace();
 		}
 
+	}
+	public void loghangerMotor1(){
+		hangerMotor1Value = RobotMap.hangerMotor1.get();
+		try{
+			if(hangerMotor1Value != hangerMotor1OldValue){
+				hangerMotor1OldValue = hangerMotor1Value;
+				hanger1Message = '\t' + "Hanger1 Position:" + hangerMotor1Value + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void loghangerMotor2(){
+		hangerMotor2Value = RobotMap.hangerMotor2.get();
+		try{
+			if(hangerMotor2Value != hangerMotor2OldValue){
+				hangerMotor2OldValue = hangerMotor2Value;
+				hanger2Message = '\t' + "Hanger2 Position:" + hangerMotor2Value + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void logintakeMotor(){
+		intakeMotorValue = RobotMap.intakeMotor.get();
+		try{
+			if(intakeMotorValue != intakeMotorOldValue){
+				intakeMotorOldValue = intakeMotorValue;
+				intakeMotorMessage = '\t' + "Intake Position:" + intakeMotorValue + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void logintakeHeight(){
+		intakeHeightValue = RobotMap.intakeHeight.get();
+		try{
+			if(intakeHeightValue != intakeHeightOldValue){
+				intakeHeightOldValue = intakeHeightValue;
+				intakeHeightMessage = '\t' + "Intake Position:" + intakeHeightValue + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void logshooterMotor(){
+		shooterMotorValue = RobotMap.shooterMotor.get();
+		try{
+			if(shooterMotorValue != shooterMotorOldValue){
+				shooterMotorOldValue = shooterMotorValue;
+				shooterMotorMessage = '\t' + "Intake Position:" + shooterMotorValue + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void logBallIntake(){
+		ballIntakeValue = RobotMap.ballIntake.get();
+		try{
+			if(ballIntakeValue != ballIntakeOldValue){
+				ballIntakeOldValue = ballIntakeValue;
+				ballIntakeMessage = '\t' + "Intake Position:" + ballIntakeValue + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void logpotentiometer(){
+		potentiometerValue = RobotMap.pot.get();
+		try{
+			if(potentiometerValue != potentiometerOldValue){
+				potentiometerOldValue = potentiometerValue;
+				potentiometerMessage = '\t' + "Intake Position:" + potentiometerValue + '\n';
+				bw.write(shifterMessage);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void closeLogger(){
 		try {

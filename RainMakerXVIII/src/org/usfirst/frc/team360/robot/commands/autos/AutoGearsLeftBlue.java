@@ -41,4 +41,3 @@ public class AutoGearsLeftBlue extends CommandGroup {
     }
 }
 
-}
