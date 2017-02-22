@@ -38,8 +38,11 @@ public class OI {
 	    	buttonDriveDown.whenPressed(new ShiftDown());
 	    	buttonDropGear.whenPressed(new DropGear());
 	    	buttonStartShooter.whileHeld(new RunShooter());
-	    	buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(175, 1));
+	    	buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(165, 1));
 	    	buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
 	    	buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
+
+	    	buttonDriveStraight2.whenPressed(new ResetNavX());
+	    	buttonDriveStraight1.whenPressed(new DriveStraightPID(.95, 0, 120));
 	    }
 }

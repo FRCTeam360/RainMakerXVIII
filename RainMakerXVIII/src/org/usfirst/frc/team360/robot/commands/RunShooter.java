@@ -68,7 +68,7 @@ public class RunShooter extends Command {
 			//	Thread t = new Thread(new Helper());
 			//	t.start();
 				currentRPM = findRPM();
-				SmartDashboard.putDouble("Shooter's RPM", currentRPM);
+				SmartDashboard.putNumber("Shooter's RPM", currentRPM);
 				Robot.m_shooter.resetEnc();
 				try{
 					Thread.sleep(20);
