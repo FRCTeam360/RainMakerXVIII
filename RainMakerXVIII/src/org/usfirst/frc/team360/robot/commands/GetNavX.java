@@ -24,7 +24,7 @@ public class GetNavX extends Command {
     // Called repeatedly when this Command is scheduled to run
     //("deprecation")
 	protected void execute() {
-    	SmartDashboard.putDouble("NavX Angle", Robot.navX.getNavXAngle());
+    	SmartDashboard.putNumber("NavX Angle", Robot.navX.getNavXAngle());
     	System.out.println(Robot.navX.getNavXAngle());
     }
 

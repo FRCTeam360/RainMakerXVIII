@@ -1,12 +1,6 @@
 package org.usfirst.frc.team360.robot.commands;
 
-
-
-import org.usfirst.frc.team360.robot.OI;
-import org.usfirst.frc.team360.robot.Robot;
-import org.usfirst.frc.team360.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.Timer;
+import org.usfirst.frc.team360.robot.*;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -29,11 +23,20 @@ public class MoveGearIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.m_intakeHeight.potentiometerValue() > distance){
-        	Robot.m_intakeHeight.setMotor(.65);
+    	if(Robot.m_intakeHeight.potentiometerValue() > distance){	
+    		if(Math.abs(distance - Robot.m_intakeHeight.potentiometerValue()) > 5){
+    			Robot.m_intakeHeight.setMotor(-.65);
+    		} else {
+    			Robot.m_intakeHeight.setMotor(-.2);
+    		}
     	}else{
-    	Robot.m_intakeHeight.setMotor(-.65);
+    		if(Math.abs(distance - Robot.m_intakeHeight.potentiometerValue()) > 5){
+    			Robot.m_intakeHeight.setMotor(.65);
+    		} else {
+    			Robot.m_intakeHeight.setMotor(.2);
+    		}
     	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

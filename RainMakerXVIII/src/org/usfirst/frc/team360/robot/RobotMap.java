@@ -5,14 +5,11 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.VictorSP;
 
 import edu.wpi.first.wpilibj.SPI;
@@ -37,16 +34,16 @@ public class RobotMap {
 	public static VictorSP motorR2 = new VictorSP(1);
 	public static VictorSP motorL1 = new VictorSP(2);
 	public static VictorSP motorL2 = new VictorSP(3);
-	public static VictorSP intakeHeight = new VictorSP(4);
-	public static VictorSP intakeMotor = new VictorSP(5);
+	public static VictorSP intakeHeight = new VictorSP(7);
+	public static VictorSP intakeMotor = new VictorSP(8);
 	public static VictorSP shooterMotor = new VictorSP(6);
-	public static VictorSP ballIntake = new VictorSP(7);
-	public static VictorSP hangerMotor1 = new VictorSP(8);
-	public static VictorSP hangerMotor2 = new VictorSP(9);
+	public static VictorSP ballIntake = new VictorSP(9);
+	public static VictorSP hangerMotor1 = new VictorSP(4);
+	public static VictorSP hangerMotor2 = new VictorSP(5);
 	
 	public static Encoder shooterEncoder = new Encoder(4, 5);
-	public static Encoder driveTrainEncoderLeft = new Encoder(0, 1);
-	public static Encoder driveTrainEncoderRight = new Encoder(2, 3);
+	public static Encoder driveTrainEncoderLeft = new Encoder(8, 9);
+	public static Encoder driveTrainEncoderRight = new Encoder(6, 7);
 
 	public static int driveTrainEncoderLeftReset = 0;
 	public static int driveTrainEncoderRightReset = 0;
@@ -56,7 +53,7 @@ public class RobotMap {
 	public static final double PIDShooterI = 0;//0.14;
 	public static final double PIDShooterD = 0.02;
 
-	public static final double encoderCountsLeftToFeet = 15.74;
+	public static final double encoderCountsLeftToFeet = 22.7;
 	
 	public static final double PIDTurnMultiplier = 0.000001;
 	public static final double PIDTurnP = 0.5;

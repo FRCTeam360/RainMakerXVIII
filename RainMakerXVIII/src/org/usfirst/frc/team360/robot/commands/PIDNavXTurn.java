@@ -1,7 +1,6 @@
 package org.usfirst.frc.team360.robot.commands;
 
 import org.usfirst.frc.team360.robot.*;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,7 +34,7 @@ public class PIDNavXTurn extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.navX.resetNavX();
+    	//Robot.navX.resetNavX();
     	 motorSpeed = 0.4;
     	 currentAngle = 0;
          gainMultiplier = 0.1;
@@ -106,7 +105,7 @@ public class PIDNavXTurn extends Command {
     		Robot.drivetrain.driveR((speed));
       		Robot.drivetrain.driveL(-(speed));	
       		
-  		if(Robot.navX.getNavXAngle() < .25 + direction && Robot.navX.getNavXAngle() > direction - .25){
+  		if(Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5){
   			n++;
   			i++;
   		} else {
@@ -117,7 +116,7 @@ public class PIDNavXTurn extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.navX.getNavXAngle() < .25 + direction && Robot.navX.getNavXAngle() > direction - .25 && n > 5);// || time.get() > 3;
+        return (Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5 && n > 5);// || time.get() > 3;
 
     	//return false;
     }

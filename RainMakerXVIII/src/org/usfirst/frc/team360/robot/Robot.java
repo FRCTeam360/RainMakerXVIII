@@ -1,14 +1,9 @@
 package org.usfirst.frc.team360.robot;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team360.robot.commands.*;
-import org.usfirst.frc.team360.robot.commands.autos.ExampleAuto;
-import org.usfirst.frc.team360.robot.commands.autos.GearCenter;
-import org.usfirst.frc.team360.robot.commands.autos.GearRight;
+import org.usfirst.frc.team360.robot.commands.autos.*;
 import org.usfirst.frc.team360.robot.subsystems.*;
 
 import edu.wpi.cscore.CvSink;
@@ -166,11 +161,13 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		System.out.println(RobotMap.shooterEncoder.get());
 		SmartDashboard.putNumber("Arm Pot", RobotMap.pot.get());
+		SmartDashboard.putNumber("Arm Current", RobotMap.pdp.getCurrent(5));
 //		SmartDashboard.putNumber("Left Motor Currect", RobotMap.pdp.getCurrent(1));
 //		SmartDashboard.putNumber("Right Motor Currect", RobotMap.pdp.getCurrent(3));
 //		SmartDashboard.putNumber("Intake Motor Currect", RobotMap.pdp.getCurrent(12));
 		SmartDashboard.putNumber("Left Encoder", drivetrain.getLHardEnc());
 		SmartDashboard.putNumber("Right Encoder", drivetrain.getRHardEnc());
+		SmartDashboard.putNumber("Shooter Encoder", m_shooter.getEnc());
 //		SmartDashboard.putNumber("navx angle", RobotMap.navX.getAngle());
 //		SmartDashboard.putNumber("navx pitch",RobotMap.navX.getPitch());
 //		SmartDashboard.putNumber("navx roll", RobotMap.navX.getRoll());
