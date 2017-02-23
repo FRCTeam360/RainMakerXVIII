@@ -10,16 +10,15 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
  */
 public class JoyStickButton extends Trigger {
     	private Joystick joy;
-    	private int button1;
-		int joyL;
-    
-    	public void DoubleButton(Joystick joy, int button1, int joyL) {
+    	double threshold;
+    	int axis;
+    	public void DoubleButton(Joystick joy, int axis, double threshold) {
     		this.joy = joy;
-    		this.button1 = button1;
-    		this.joyL = joyL;
+    		this.threshold = threshold;
+    		this.axis = axis;
     	}	
     
         public boolean get() {
-            return joy.getRawButton(button1) && joy.getRawButton(joyL);
+            return Math.abs(joy.getRawAxis(axis)) > Math.abs(axis);
         }
     }
