@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.internal.HardwareTimer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-public class Robot<AutoModeBlue, AutoModeRed> extends IterativeRobot {
+public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Pneumatics pneumatics;
 	public static OI oi;
