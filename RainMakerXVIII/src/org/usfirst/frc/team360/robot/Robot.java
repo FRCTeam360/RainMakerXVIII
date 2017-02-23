@@ -2,6 +2,9 @@ package org.usfirst.frc.team360.robot;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team360.robot.OI;
+import org.usfirst.frc.team360.robot.RobotMap;
+//import org.usfirst.frc.team360.robot.Robot.AutoModeRB;
 import org.usfirst.frc.team360.robot.commands.*;
 import org.usfirst.frc.team360.robot.commands.autos.*;
 import org.usfirst.frc.team360.robot.subsystems.*;
@@ -9,16 +12,19 @@ import org.usfirst.frc.team360.robot.subsystems.*;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.internal.HardwareTimer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-public class Robot extends IterativeRobot {
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+public class Robot<AutoModeBlue, AutoModeRed> extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Pneumatics pneumatics;
 	public static OI oi;
@@ -32,11 +38,18 @@ public class Robot extends IterativeRobot {
 	public static Logger logger;
 	public static Hanger hanger;
 	public static BallIntake ballIntake;
-
+	
 	Command getEnc;
 	Command m_USBSave;
 	Command autonomousCommand;
-	// SendableChooser chooser;
+	public static enum AutoModeRB {RED, BLUE};
+	public static enum AutoModeType {NONE, GEARSCENTER, GEARSLEFT, GEARSRIGHT, BOILER};
+	AutoModeRB autoChoiceRB;
+	static AutoModeType autoModeType;
+	SendableChooser autoRB;
+	SendableChooser autoType;
+	
+	 SendableChooser chooser;
 
 	@Override
 	public void robotInit() {
@@ -54,8 +67,19 @@ public class Robot extends IterativeRobot {
 		m_USBSave = new UsbSave();
 		hanger = new Hanger();
 		ballIntake = new BallIntake();
+		
 		// SmartDashboard.putData("Auto mode", chooser);
-
+//		autoChooser = new SendableChooser();
+//		autoChooser.addDefault("AutoRed", new autoRB());
+//		autoChooser.addDefault("Auto1", new auto1());
+		autoType = new SendableChooser();
+		autoRB = new SendableChooser();
+		SmartDashboard.putData("auto Mode Chooser", autoType);
+		SmartDashboard.putData("auto Mode Chooser", autoRB);
+		
+//		auto = new SendableChooser();
+		
+		
 		RobotMap.lights = new Relay(0);
 
 		new Thread(() -> {
@@ -84,18 +108,21 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		logger.closeLogger();
-
+		autoRB.addDefault("Red",  AutoModeRB.RED);
+		autoRB.addObject("Blue",  AutoModeRB.BLUE);
+		autoType.addDefault("None",  AutoModeType.NONE);
+		autoType.addObject("GearsCenter", AutoModeType.GEARSCENTER);
+		autoType.addObject("GearsLeft", AutoModeType.GEARSLEFT);
+		autoType.addObject("GearsRight", AutoModeType.GEARSRIGHT);
+		autoType.addObject("Boiler", AutoModeType.BOILER);
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("navx angle", RobotMap.navX.getAngle());
-		SmartDashboard.putNumber("navx pitch",RobotMap.navX.getPitch());
-		SmartDashboard.putNumber("navx roll", RobotMap.navX.getRoll());
-		SmartDashboard.putNumber("navx yaw", RobotMap.navX.getYaw());
-	}
-
+		
+			}
+		
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -109,52 +136,69 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		RobotMap.RobotState = "Autonomous";
+		
+		RobotMap.RobotState = "AutonomousRB";
 		logger.initLogger();
-		// autonomousCommand = (Command) chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		autonomousCommand = new GearRight();
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		
+		 autoChoiceRB = (AutoModeRB) autoRB.getSelected();
+		 autoModeType = (AutoModeType) autoType.getSelected();
+		if (autoChoiceRB == AutoModeRB.RED){
+			if (autoModeType == AutoModeType.NONE){
+				autonomousCommand = new AutoNone();
+			} else if(autoModeType == AutoModeType.GEARSCENTER){
+				autonomousCommand = new AutoGearsCenter();
+			} else if(autoModeType == AutoModeType.GEARSLEFT){
+				autonomousCommand = new AutoGearsLeftRed();
+			} else if(autoModeType == AutoModeType.GEARSRIGHT){
+				autonomousCommand = new AutoGearsRightRed();
+			} else if(autoModeType == AutoModeType.BOILER){
+				autonomousCommand = new AutoBoilerRed();
+			} 
+		} else if(autoChoiceRB == AutoModeRB.BLUE){
+			if (autoModeType == AutoModeType.NONE){
+				autonomousCommand = new AutoNone();
+			} else if(autoModeType == AutoModeType.GEARSCENTER){
+				autonomousCommand = new AutoGearsCenter();
+			} else if(autoModeType == AutoModeType.GEARSLEFT){
+				autonomousCommand = new AutoGearsLeftBlue();
+			} else if(autoModeType == AutoModeType.GEARSRIGHT){
+				autonomousCommand = new AutoGearsRightBlue();
+			} else if(autoModeType == AutoModeType.BOILER){
+				autonomousCommand = new AutoBoilerBlue();
+			} 
+		}
+		if (autonomousCommand != null){
+				autonomousCommand.start();	
+		}
 	}
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
-	@Override
+	
+//	  This function is called periodically during autonomous
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Left Encoder", drivetrain.getLHardEnc());
-		SmartDashboard.putNumber("Right Encoder", drivetrain.getRHardEnc());
+		
 	}
-
-	@Override
+	
 	public void teleopInit() {
 
 		RobotMap.RobotState = "Teleop";
-		// Object logger;
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
+//		 Object logger;
+//		 This makes sure that the autonomous stops running when
+//		 teleop starts running. If you want the autonomous to
+//		 continue until interrupted by another command, remove
+//		 this line or comment it out.
 		logger.initLogger();
 		m_USBSave.start();
-		if (autonomousCommand != null)
+		if (autonomousCommand != null){
 			autonomousCommand.cancel();
+	}
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	int i = 0;
+	
 
 	@Override
 	public void teleopPeriodic() {
@@ -173,7 +217,6 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("navx roll", RobotMap.navX.getRoll());
 //		SmartDashboard.putNumber("navx yaw", RobotMap.navX.getYaw());
 	}
-	
 
 	/**
 	 * This function is called periodically during test mode
@@ -181,5 +224,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
-	}
+			}
 }
