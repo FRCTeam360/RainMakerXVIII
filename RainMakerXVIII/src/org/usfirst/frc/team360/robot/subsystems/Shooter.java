@@ -1,7 +1,6 @@
 package org.usfirst.frc.team360.robot.subsystems;
 
-import org.usfirst.frc.team360.robot.RobotMap;
-import org.usfirst.frc.team360.robot.commands.*;
+import org.usfirst.frc.team360.robot.*;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;

@@ -1,6 +1,4 @@
 package org.usfirst.frc.team360.robot;
-//import java.awt.image.BufferedImage;
-//import java.awt.image.DataBufferByte;
 
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
@@ -205,17 +203,19 @@ public class Robot<AutoModeBlue, AutoModeRed> extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putDouble("SF2_Historical_Yaw", navX.getHistoricalYaw(-1000));
-    	SmartDashboard.putDouble("SF2_Historical_Pitch", navX.getHistoricalPitch(-1000));
-    	SmartDashboard.putDouble("SF2_Historical_Roll", navX.getHistoricalRoll(-1000));
-        SmartDashboard.putDouble("IMU_Yaw", navX.getIMUYaw());
-        SmartDashboard.putDouble("IMU_Pitch", navX.getIMUPitch());
-        SmartDashboard.putDouble("IMU_Roll", navX.getIMURoll());
-        SmartDashboard.putDouble("Delta_Yaw",	navX.getDeltaYaw());
-        SmartDashboard.putDouble("Delta_Pitch",	navX.getDeltaPitch());
-        SmartDashboard.putDouble("Delta_Roll",	navX.getDeltaRoll());
-        SmartDashboard.putBoolean("isMoving", RobotMap.navX.isMoving());
-        SmartDashboard.putBoolean("isRotating", RobotMap.navX.isRotating());
+		System.out.println(RobotMap.shooterEncoder.get());
+		SmartDashboard.putNumber("Arm Pot", RobotMap.pot.get());
+		SmartDashboard.putNumber("Arm Current", RobotMap.pdp.getCurrent(5));
+//		SmartDashboard.putNumber("Left Motor Currect", RobotMap.pdp.getCurrent(1));
+//		SmartDashboard.putNumber("Right Motor Currect", RobotMap.pdp.getCurrent(3));
+//		SmartDashboard.putNumber("Intake Motor Currect", RobotMap.pdp.getCurrent(12));
+		SmartDashboard.putNumber("Left Encoder", drivetrain.getLHardEnc());
+		SmartDashboard.putNumber("Right Encoder", drivetrain.getRHardEnc());
+		SmartDashboard.putNumber("Shooter Encoder", m_shooter.getEnc());
+//		SmartDashboard.putNumber("navx angle", RobotMap.navX.getAngle());
+//		SmartDashboard.putNumber("navx pitch",RobotMap.navX.getPitch());
+//		SmartDashboard.putNumber("navx roll", RobotMap.navX.getRoll());
+//		SmartDashboard.putNumber("navx yaw", RobotMap.navX.getYaw());
 	}
 
 	/**

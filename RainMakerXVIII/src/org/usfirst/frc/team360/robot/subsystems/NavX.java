@@ -1,20 +1,9 @@
 package org.usfirst.frc.team360.robot.subsystems;
 
-import org.usfirst.frc.team360.robot.Robot;
-import org.usfirst.frc.team360.robot.RobotMap;
-import org.usfirst.frc.team360.robot.commands.GetNavX;
-
+import org.usfirst.frc.team360.robot.*;
+import org.usfirst.frc.team360.robot.commands.*;
 import com.kauailabs.navx.frc.AHRS;
-import com.kauailabs.sf2.orientation.Quaternion;
-import com.kauailabs.sf2.time.TimestampedValue;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import com.kauailabs.sf2.frc.navXSensor;
 import com.kauailabs.sf2.orientation.OrientationHistory;
 

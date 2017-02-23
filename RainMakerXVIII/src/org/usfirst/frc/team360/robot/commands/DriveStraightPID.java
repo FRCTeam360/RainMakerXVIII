@@ -14,7 +14,7 @@ public class DriveStraightPID extends Command {
 		double distance = 0;
 	    double error = 0;
 	    double pAdjustment = 0;
-	    double iAdjustment = -.01;
+	    double iAdjustment = 0;
 	    double dAdjustment = 0;
 	    double lastError = 0;
 	    double PIDAdjustment = 0;
@@ -32,7 +32,7 @@ public class DriveStraightPID extends Command {
     @Override
 	protected void initialize() {
     	Robot.drivetrain.resetEncs();
-    	Robot.navX.resetNavX();
+    	//Robot.navX.resetNavX();
     	dAdjustment = 0;
     	if(motorSpeed > 0){
     		//iAdjustment = 0.25;
@@ -40,7 +40,7 @@ public class DriveStraightPID extends Command {
     	} else {
     	//	practiceBotBack();
     	}
-    	iAdjustment = -.01;
+    	iAdjustment = 0;
     	pAdjustment = 0;
     	error = 0;
     	lastError = 0;
@@ -66,7 +66,7 @@ public class DriveStraightPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
 	protected boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getLSoftEnc()) > Math.abs(distance);
+        return Math.abs(Robot.drivetrain.getRSoftEnc()) > Math.abs(distance);
     }
 
     // Called once after isFinished returns true
