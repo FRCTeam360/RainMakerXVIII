@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static Logger logger;
 	public static Hanger hanger;
 	public static BallIntake ballIntake;
-	
+	public static RPIConnection rpiConnection;
 	Command getEnc;
 	Command m_USBSave;
 	Command autonomousCommand;
@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
 		m_USBSave = new UsbSave();
 		hanger = new Hanger();
 		ballIntake = new BallIntake();
-		
+		rpiConnection = new RPIConnection();
 		// SmartDashboard.putData("Auto mode", chooser);
 //		autoChooser = new SendableChooser();
 //		autoChooser.addDefault("AutoRed", new autoRB());
