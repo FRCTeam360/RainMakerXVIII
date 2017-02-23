@@ -11,10 +11,10 @@ public class ExampleAuto extends CommandGroup {
     public  ExampleAuto() {
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
-    	addSequential(new DriveStraightPID(.95, 180, 200));
-    	addSequential(new DriveStraightPID(.95, 180, 2382));
+    	addSequential(new PIDDriveStraight(.95, 180, 200));
+    	addSequential(new PIDDriveStraight(.95, 180, 2382));
     	addSequential(new PIDNavXTurn(245));
-    	addSequential(new DriveStraightPID(.95, 245, 3386));
+    	addSequential(new PIDDriveStraight(.95, 245, 3386));
     	addSequential(new PIDNavXTurn(180));
     	addSequential(new PIDNavXTurn(90));
     }

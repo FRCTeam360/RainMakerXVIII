@@ -9,10 +9,6 @@ public class PIDNavXTurn extends Command {
 	double motorSpeed = 0.4;
 	double direction = 0;
 	double currentAngle = 0;
-    double gainMultiplier = 0.1;
-    double kPStraight = 0.5;
-    double kIStraight = 0.01;
-    double kDStraight = 0.5;
     double error = 0;
     double pAdjustment = 0;
     double iAdjustment = 0;
@@ -37,10 +33,6 @@ public class PIDNavXTurn extends Command {
     	//Robot.navX.resetNavX();
     	 motorSpeed = 0.4;
     	 currentAngle = 0;
-         gainMultiplier = 0.1;
-         kPStraight = 0.5;
-         kIStraight = 0.03;
-         kDStraight = 0.5;
          error = 0;
          pAdjustment = 0;
          iAdjustment = 0;
@@ -61,9 +53,9 @@ public class PIDNavXTurn extends Command {
       	SmartDashboard.putNumber("angle target: ", direction);
     	currentAngle = Robot.navX.getNavXAngle();
     	error = direction - currentAngle;
-    	pAdjustment = error * kPStraight * gainMultiplier;
-    	iAdjustment = iAdjustment + (error * kIStraight * gainMultiplier);
-    	dAdjustment = (error - lastError) * kDStraight * gainMultiplier;
+    	pAdjustment = error * RobotMap.PIDNavxTurnP * RobotMap.PIDNavxTurnGainMultiplier;
+    	iAdjustment = iAdjustment + (error * RobotMap.PIDNavxTurnI * RobotMap.PIDNavxTurnGainMultiplier);
+    	dAdjustment = (error - lastError) * RobotMap.PIDNavxTurnD * RobotMap.PIDNavxTurnGainMultiplier;
     	lastError = error;
     	SmartDashboard.putNumber("error: ", error);
     	SmartDashboard.putNumber("prop:  ", pAdjustment);

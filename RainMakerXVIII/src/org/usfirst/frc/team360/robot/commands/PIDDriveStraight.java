@@ -6,7 +6,7 @@ import org.usfirst.frc.team360.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveStraightPID extends Command {
+public class PIDDriveStraight extends Command {
 
 		double motorSpeed = 0;
 		double direction = 0;
@@ -19,7 +19,7 @@ public class DriveStraightPID extends Command {
 	    double lastError = 0;
 	    double PIDAdjustment = 0;
 	    
-    public DriveStraightPID(double motorSpeed, double direction, double distance) {
+    public PIDDriveStraight(double motorSpeed, double direction, double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);][\
     	

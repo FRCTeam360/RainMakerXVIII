@@ -68,18 +68,10 @@ public class Robot extends IterativeRobot {
 		hanger = new Hanger();
 		ballIntake = new BallIntake();
 		rpiConnection = new RPIConnection();
-		// SmartDashboard.putData("Auto mode", chooser);
-//		autoChooser = new SendableChooser();
-//		autoChooser.addDefault("AutoRed", new autoRB());
-//		autoChooser.addDefault("Auto1", new auto1());
 		autoType = new SendableChooser();
 		autoRB = new SendableChooser();
-		SmartDashboard.putData("auto Mode Chooser", autoType);
-		SmartDashboard.putData("auto Mode Chooser", autoRB);
-		
-//		auto = new SendableChooser();
-		
-		
+		SmartDashboard.putData("Auto Action", autoType);
+		SmartDashboard.putData("Driver Station Side", autoRB);
 		RobotMap.lights = new Relay(0);
 
 		new Thread(() -> {
@@ -224,5 +216,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
-			}
+	}
 }

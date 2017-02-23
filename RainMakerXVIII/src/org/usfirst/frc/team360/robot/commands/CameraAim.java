@@ -11,7 +11,7 @@ public class CameraAim extends CommandGroup {
     	addParallel(new ShiftUp());
     	addSequential(new WaitCommand(1.4));
     	addSequential(new WaitForGoodCameraValue());
-    	addSequential(new CameraPIDAim());
+    	addSequential(new PIDCameraAim());
     	addSequential(new WaitCommand(.2));
     	
     }

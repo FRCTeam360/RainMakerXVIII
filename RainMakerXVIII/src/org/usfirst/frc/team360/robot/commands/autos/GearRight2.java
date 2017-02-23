@@ -13,12 +13,12 @@ public class GearRight2 extends CommandGroup {
     	addParallel(new MoveGearIntake(95, 1));
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
-    	addSequential(new DriveStraightPID(-.95, 0, 89));
+    	addSequential(new PIDDriveStraight(-.95, 0, 89));
     	addSequential(new PIDNavXTurn(-60));
-    	addSequential(new DriveStraightPID(-.95, 0, 18));
-    	addSequential(new DriveStraightPID(-.5, 0, 4));
+    	addSequential(new PIDDriveStraight(-.95, 0, 18));
+    	addSequential(new PIDDriveStraight(-.5, 0, 4));
     	addSequential(new WaitCommand(.5)); 	
     	addSequential(new DropGear());
-    	addSequential(new DriveStraightPID(.95, 0, 24));
+    	addSequential(new PIDDriveStraight(.95, 0, 24));
     }
 }

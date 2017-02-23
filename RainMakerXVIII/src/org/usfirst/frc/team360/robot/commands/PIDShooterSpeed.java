@@ -7,7 +7,7 @@ import org.usfirst.frc.team360.robot.*;
 /**
  *
  */
-public class RunShooter extends Command {
+public class PIDShooterSpeed extends Command {
 	boolean PIDControl = true;
 	static double currentRPM = 0;
 	double t0 = 0;
@@ -23,7 +23,7 @@ public class RunShooter extends Command {
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
     boolean shouldRun = false;
-    public RunShooter() {
+    public PIDShooterSpeed() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.m_shooter);
     }

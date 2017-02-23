@@ -5,16 +5,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class CameraPIDAim extends Command {
+public class PIDCameraAim extends Command {
 	
 	double motorSpeed = 0.4;
 	double direction = 0;
 	double currentAngle = 0;
 	double distance = 0;
-    double gainMultiplier = 0.15;
-    double kPStraight = 0.5;
-    double kIStraight = 0.03;
-    double kDStraight = 0.5;
     double error = 0;
     double pAdjustment = 0;
     double iAdjustment = 0;
@@ -27,7 +23,7 @@ public class CameraPIDAim extends Command {
     Timer time;
     int i = 0;
     boolean pid = false;
-    public CameraPIDAim() { //direction is called as 270
+    public PIDCameraAim() { //direction is called as 270
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     //	this.motorSpeed = motorSpeed;
@@ -63,9 +59,9 @@ public class CameraPIDAim extends Command {
       	SmartDashboard.putNumber("angle target: ", direction);
     	currentAngle = Robot.navX.getNavXAngle();
     	error = direction - currentAngle;
-    	pAdjustment = error * kPStraight * gainMultiplier;
-    	iAdjustment = iAdjustment + (error * kIStraight * gainMultiplier);
-    	dAdjustment = (error - lastError) * kDStraight * gainMultiplier;
+    	pAdjustment = error * RobotMap.PIDCameraAimP * RobotMap.PIDCameraAimGainMultiplier;
+    	iAdjustment = iAdjustment + (error * RobotMap.PIDCameraAimI * RobotMap.PIDCameraAimGainMultiplier);
+    	dAdjustment = (error - lastError) * RobotMap.PIDCameraAimD * RobotMap.PIDCameraAimGainMultiplier;
     	lastError = error;
     	SmartDashboard.putNumber("error: ", error);
     	SmartDashboard.putNumber("prop:  ", pAdjustment);

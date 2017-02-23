@@ -37,12 +37,12 @@ public class OI {
 	    	buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
 	    	buttonDriveDown.whenPressed(new ShiftDown());
 	    	buttonDropGear.whenPressed(new DropGear());
-	    	buttonStartShooter.whileHeld(new RunShooter());
+	    	buttonStartShooter.whileHeld(new PIDShooterSpeed());
 	    	buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(165, 1));
 	    	buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
 	    	buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
 
 	    	buttonDriveStraight2.whenPressed(new ResetNavX());
-	    	buttonDriveStraight1.whenPressed(new DriveStraightPID(.95, 0, 120));
+	    	buttonDriveStraight1.whenPressed(new PIDDriveStraight(.95, 0, 120));
 	    }
 }

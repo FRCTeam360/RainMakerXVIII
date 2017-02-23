@@ -25,7 +25,7 @@ public class IntakeGearFromGround extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new MoveGearIntake(359, 1));
+    	addSequential(new SetGearIntakePositionDown());
     	addSequential(new IntakeUntilGearGrabbed());
     	addSequential(new MoveGearIntake(248, 1));
     }

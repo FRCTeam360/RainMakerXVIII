@@ -13,11 +13,11 @@ public class GearCenter extends CommandGroup {
     	addParallel(new MoveGearIntake(95, 1));
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
-    	addSequential(new DriveStraightPID(-.95, 0, 63));
-    	addSequential(new DriveStraightPID(-.5, 0, 4));
+    	addSequential(new PIDDriveStraight(-.95, 0, 63));
+    	addSequential(new PIDDriveStraight(-.5, 0, 4));
     	addSequential(new WaitCommand(.5));
     	addSequential(new DropGear());
-    	addSequential(new DriveStraightPID(.95, 0, 24));
+    	addSequential(new PIDDriveStraight(.95, 0, 24));
 //    	addSequential(new DriveStraightPID(.95, 180, 2382));
 //    	addSequential(new PIDNavXTurn(245));
 //    	addSequential(new DriveStraightPID(.95, 245, 3386));
