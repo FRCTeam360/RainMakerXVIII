@@ -23,14 +23,10 @@ public class PIDCameraAim extends Command {
     Timer time;
     int i = 0;
     boolean pid = false;
-    public PIDCameraAim() { //direction is called as 270
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    //	this.motorSpeed = motorSpeed;
-    //	this.distance = distance;
+    public PIDCameraAim() {
     	requires(Robot.drivetrain); 
     }
-    // Called just before this Command runs the first time
+    
     protected void initialize() {
     	dAdjustment = 0;
     	iAdjustment = 0;
@@ -51,8 +47,7 @@ public class PIDCameraAim extends Command {
     	time.reset();
     	time.start();
     }
-    // Called repeatedly when this Command is scheduled to run
-
+    
     protected void execute() {
 
     	SmartDashboard.putNumber("angle: ", Robot.navX.getNavXAngle());
@@ -72,9 +67,6 @@ public class PIDCameraAim extends Command {
       	SmartDashboard.putNumber("inte: ", iAdjustment);
       	SmartDashboard.putNumber("right: ", motorSpeed);
       	SmartDashboard.putNumber("left: ", motorSpeed + PIDAdjustment);
-
-      	//drive motors may be reverse 10/10 should fix
-
       	if(Robot.navX.getNavXAngle() < 10 + direction && Robot.navX.getNavXAngle() > direction - 10 && pid == false){
 
       		iAdjustment = 0;
@@ -108,21 +100,17 @@ public class PIDCameraAim extends Command {
   		SmartDashboard.putNumber("speed: ", speed);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return (Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5 && n > 5);// || time.get() > 3;
 
     	//return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	Robot.drivetrain.stop();
     	SmartDashboard.putString("done", "done");
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     	end();
     }

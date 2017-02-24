@@ -7,8 +7,6 @@ import org.usfirst.frc.team360.robot.commands.Pressurize;
 
 public class Pneumatics extends Subsystem {
     Compressor comp = RobotMap.compressor;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
     public void pressurize (){
     	comp.start();
     }
@@ -17,6 +15,5 @@ public class Pneumatics extends Subsystem {
     }
     public void initDefaultCommand() {
     	setDefaultCommand(new Pressurize());
-        // Set the default command for a subsystem here.
     }
 }

@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Shooter extends Subsystem {
 	VictorSP shooterMotor = RobotMap.shooterMotor;
 	Encoder shooterEncoder = RobotMap.shooterEncoder;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	public int getEnc(){
 		return shooterEncoder.get();
 	}
@@ -24,8 +22,6 @@ public class Shooter extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new RunShooter());
     }
     
 }

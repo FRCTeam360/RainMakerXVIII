@@ -18,11 +18,8 @@ public class Hanger extends Subsystem {
 		hangerMotor1.stopMotor();
 		hangerMotor2.stopMotor();
 	}
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         setDefaultCommand(new RunHanger());
     }
 }

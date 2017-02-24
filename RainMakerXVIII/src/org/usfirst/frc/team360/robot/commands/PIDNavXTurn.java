@@ -20,15 +20,13 @@ public class PIDNavXTurn extends Command {
     int n = 0;
     int i = 0;
     boolean pid = false;
-    public PIDNavXTurn(double direction) { //direction is called as 270
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public PIDNavXTurn(double direction) {
     //	this.motorSpeed = motorSpeed;
     //	this.distance = distance;
     	this.direction = direction;
     	requires(Robot.drivetrain); 
     }
-    // Called just before this Command runs the first time
+
     protected void initialize() {
     	//Robot.navX.resetNavX();
     	 motorSpeed = 0.4;
@@ -45,7 +43,6 @@ public class PIDNavXTurn extends Command {
          i = 0;
          pid = false;
     }
-    // Called repeatedly when this Command is scheduled to run
 
     protected void execute() {
 
@@ -67,9 +64,6 @@ public class PIDNavXTurn extends Command {
       	SmartDashboard.putBoolean("pid stat", pid);
       	SmartDashboard.putNumber("right: ", motorSpeed);
       	SmartDashboard.putNumber("left: ", motorSpeed + PIDAdjustment);
-
-      	//drive motors may be reverse 10/10 should fix
-
       	if(Robot.navX.getNavXAngle() < 10 + direction && Robot.navX.getNavXAngle() > direction - 10){
       		if(pid == false){
       			iAdjustment = 0;
@@ -106,22 +100,18 @@ public class PIDNavXTurn extends Command {
   		SmartDashboard.putNumber("speed: ", speed);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return (Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5 && n > 5);// || time.get() > 3;
 
     	//return false;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	pid = false;
     	Robot.drivetrain.stop();
     	SmartDashboard.putString("done", "done");
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     	end();
     }

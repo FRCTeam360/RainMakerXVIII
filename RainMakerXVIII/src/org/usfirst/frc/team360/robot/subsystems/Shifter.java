@@ -7,9 +7,7 @@ import org.usfirst.frc.team360.robot.*;
 public class Shifter extends Subsystem {
     
 //error here
-	public static DoubleSolenoid shifter = RobotMap.shifter;  
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	public static DoubleSolenoid shifter = RobotMap.shifter;
 	public void open(){ 
 		shifter.set(DoubleSolenoid.Value.kForward);
 	}
@@ -17,7 +15,5 @@ public class Shifter extends Subsystem {
 		shifter.set(DoubleSolenoid.Value.kReverse);
 	}
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }

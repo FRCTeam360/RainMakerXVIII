@@ -56,7 +56,6 @@ public class NavX extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new GetNavX());
-		// TODO Auto-generated method stub
 	}
 	        
 }

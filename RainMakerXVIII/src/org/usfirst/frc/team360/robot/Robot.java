@@ -44,7 +44,6 @@ public class Robot extends IterativeRobot {
 	SendableChooser<AutoModeRB> autoRB;
 	SendableChooser<AutoModeType> autoType;
 
-	@Override
 	public void robotInit() {
 		lights = new Lights();
 		logger = new Logger();
@@ -73,16 +72,13 @@ public class Robot extends IterativeRobot {
 		autoType.addObject("Place One Gear Right", AutoModeType.PLACEONEGEARRIGHT);
 		autoType.addObject("Shoot Boiler", AutoModeType.SHOOTBOILER);
 		autoType.addObject("Place Gear Right and Shoot Boiler", AutoModeType.PLACEGEARRIGHTANDSHOOTERBOILER);
-
 		new Thread(() -> {
-
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 			camera.setResolution(640, 480);
 			CvSink cvSink = CameraServer.getInstance().getVideo();
 			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
 			Mat source = new Mat();
 			Mat output = new Mat();
-
 			while (true) {
 				cvSink.grabFrame(source);
 				Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
@@ -92,39 +88,17 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
 	public void disabledInit() {
 		logger.closeLogger();
 	}
 
-	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		
-			}
-		
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
-	@Override
+	}
+	
 	public void autonomousInit() {
-		
 		RobotMap.RobotState = "AutonomousRB";
 		logger.initLogger();
-		
 		 autoChoiceRB = (AutoModeRB) autoRB.getSelected();
 		 autoModeType = (AutoModeType) autoType.getSelected();
 		if (autoChoiceRB == AutoModeRB.RED){
@@ -163,35 +137,18 @@ public class Robot extends IterativeRobot {
 		}
 	}
 
-	
-//	  This function is called periodically during autonomous
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
 	}
 	
 	public void teleopInit() {
-
 		RobotMap.RobotState = "Teleop";
-//		 Object logger;
-//		 This makes sure that the autonomous stops running when
-//		 teleop starts running. If you want the autonomous to
-//		 continue until interrupted by another command, remove
-//		 this line or comment it out.
 		logger.initLogger();
 		m_USBSave.start();
 		if (autonomousCommand != null){
 			autonomousCommand.cancel();
+		}
 	}
-	}
-
-	/**
-	 * This function is called periodically during operator control
-	 */
-	int i = 0;
-	
-
-	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		System.out.println(RobotMap.shooterEncoder.get());
@@ -209,10 +166,6 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("navx yaw", RobotMap.navX.getYaw());
 	}
 
-	/**
-	 * This function is called periodically during test mode
-	 */
-	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
 	}

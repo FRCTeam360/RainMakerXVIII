@@ -13,8 +13,6 @@ public class DriveTrain extends Subsystem {
 	Encoder driveTrainEncoderLeft = RobotMap.driveTrainEncoderLeft;
 	Encoder driveTrainEncoderRight = RobotMap.driveTrainEncoderRight;
 
-	// Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	public DriveTrain(){
 		driveTrainEncoderLeft.reset();
 		driveTrainEncoderRight.reset();

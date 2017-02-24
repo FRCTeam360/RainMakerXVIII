@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Logger extends Subsystem {
-	String content; //content written to the Log
+	String content;
     FileWriter fw;
     BufferedWriter bw;
 	File Log;
@@ -48,8 +48,6 @@ public class Logger extends Subsystem {
 
 	
 	boolean canStop = false;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	String timeMessage;// the match/ FPGA time string
 	String encodersMessage;// the encoder values
 	String speedMessage;//the speed
@@ -325,7 +323,5 @@ public class Logger extends Subsystem {
 		}
 	}
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }
