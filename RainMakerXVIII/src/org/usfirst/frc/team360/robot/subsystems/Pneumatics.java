@@ -4,10 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team360.robot.*;
 import org.usfirst.frc.team360.robot.commands.Pressurize;
-//import org.usfirst.frc.team360.robot.commands.Pressurize;
-/**
- *
- */
+
 public class Pneumatics extends Subsystem {
     Compressor comp = RobotMap.compressor;
     // Put methods for controlling this subsystem

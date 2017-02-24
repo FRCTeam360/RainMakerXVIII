@@ -1,9 +1,7 @@
 package org.usfirst.frc.team360.robot.triggers;
 
-//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-//import org.usfirst.frc.team360.robot.OI;
 
 /**
  *

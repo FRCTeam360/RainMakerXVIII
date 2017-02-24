@@ -1,14 +1,10 @@
 package org.usfirst.frc.team360.robot.subsystems;
 
 import org.usfirst.frc.team360.robot.*;
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Shooter extends Subsystem {
 	VictorSP shooterMotor = RobotMap.shooterMotor;
 	Encoder shooterEncoder = RobotMap.shooterEncoder;

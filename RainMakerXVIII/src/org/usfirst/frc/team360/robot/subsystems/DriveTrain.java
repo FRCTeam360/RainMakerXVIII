@@ -3,14 +3,8 @@ package org.usfirst.frc.team360.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team360.robot.*;
 import org.usfirst.frc.team360.robot.commands.JoystickTankDrive;
-//import org.usfirst.frc.team360.robot.commands.JoystickTankDrive;
-/**
- *
- */
 public class DriveTrain extends Subsystem {
 	VictorSP motorR1 = RobotMap.motorR1;
 	VictorSP motorR2 = RobotMap.motorR2;

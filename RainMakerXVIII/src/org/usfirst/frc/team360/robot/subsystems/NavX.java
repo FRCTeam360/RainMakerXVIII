@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.kauailabs.sf2.frc.navXSensor;
 import com.kauailabs.sf2.orientation.OrientationHistory;
 
-/**
- *
- */
 public class NavX extends Subsystem {
 	AHRS m_navX = RobotMap.navX;
 	navXSensor navxSensor;

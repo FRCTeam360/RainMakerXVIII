@@ -1,22 +1,16 @@
 package org.usfirst.frc.team360.robot.subsystems;
 
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.usfirst.frc.team360.robot.Robot;
 import org.usfirst.frc.team360.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Logger extends Subsystem {
 	String content; //content written to the Log
     FileWriter fw;

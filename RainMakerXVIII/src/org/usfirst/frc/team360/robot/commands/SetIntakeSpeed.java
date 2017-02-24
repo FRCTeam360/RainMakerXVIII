@@ -2,9 +2,7 @@ package org.usfirst.frc.team360.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team360.robot.*;
-/**
- *
- */
+
 public class SetIntakeSpeed extends Command {
 
     public SetIntakeSpeed() {

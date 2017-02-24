@@ -1,7 +1,6 @@
 package org.usfirst.frc.team360.robot;
 
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -11,19 +10,12 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.VictorSP;
-
 import edu.wpi.first.wpilibj.SPI;
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 public class RobotMap {
 	public static double angle = 0;
 	public static double CameraFudgeFactor = 1.5;
-	public static Relay lights;
+	public static Relay lights = new Relay(0);
 	
 	public static boolean driveForward = true;
 	

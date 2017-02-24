@@ -3,7 +3,6 @@ package org.usfirst.frc.team360.robot.commands;
 import org.usfirst.frc.team360.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-
 public class TurnLightsOff extends Command {
     public TurnLightsOff() {
         // Use requires() here to declare subsystem dependencies

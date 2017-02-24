@@ -25,6 +25,6 @@ public class DropGear extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addParallel(new MoveGearIntakeRoller(-1, .65));
-    	addSequential(new MoveGearIntake(359, 1));
+    	addSequential(new SetGearIntakePositionDown());
     }
 }

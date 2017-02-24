@@ -1,12 +1,8 @@
 package org.usfirst.frc.team360.robot.commands;
 
 import org.usfirst.frc.team360.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class ShiftUp extends Command {
 
     public ShiftUp() {

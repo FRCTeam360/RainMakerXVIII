@@ -1,16 +1,14 @@
-
 package org.usfirst.frc.team360.robot.commands.autos;
 
 import org.usfirst.frc.team360.robot.commands.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class GearLeft extends CommandGroup {
+public class AutoPlaceOneGearLeftRed extends CommandGroup {
 
-    public  GearLeft() {
+    public  AutoPlaceOneGearLeftRed() {
     	addParallel(new ResetNavX());
-    	addParallel(new MoveGearIntake(95, 1));
+    	addParallel(new SetGearIntakePositionCenter());
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
     	addSequential(new PIDDriveStraight(-.95, 0, 89));

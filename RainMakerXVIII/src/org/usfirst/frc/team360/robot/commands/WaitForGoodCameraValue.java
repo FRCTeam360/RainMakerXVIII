@@ -3,7 +3,6 @@ package org.usfirst.frc.team360.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 public class WaitForGoodCameraValue extends Command {
 	double thing;
     public WaitForGoodCameraValue() {

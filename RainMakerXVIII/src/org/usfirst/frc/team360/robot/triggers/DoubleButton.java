@@ -3,10 +3,6 @@ package org.usfirst.frc.team360.robot.triggers;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 
-/**
- * A custom button that is triggered when two buttons on a Joystick are
- * simultaneously pressed.
- */
 public class DoubleButton extends Trigger {
 	private Joystick joy;
 	private int button1, button2;

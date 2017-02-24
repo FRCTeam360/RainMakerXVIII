@@ -3,12 +3,11 @@ package org.usfirst.frc.team360.robot.commands.autos;
 
 import org.usfirst.frc.team360.robot.commands.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class GearCenter extends CommandGroup {
+public class AutoPlaceOneGearCenter extends CommandGroup {
 
-    public  GearCenter() {
+    public  AutoPlaceOneGearCenter() {
     	addParallel(new ResetNavX());
     	addParallel(new MoveGearIntake(95, 1));
     	addSequential(new ShiftUp());

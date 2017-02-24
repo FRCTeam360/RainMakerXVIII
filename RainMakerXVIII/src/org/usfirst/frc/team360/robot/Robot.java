@@ -4,26 +4,21 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team360.robot.OI;
 import org.usfirst.frc.team360.robot.RobotMap;
-//import org.usfirst.frc.team360.robot.Robot.AutoModeRB;
 import org.usfirst.frc.team360.robot.commands.*;
 import org.usfirst.frc.team360.robot.commands.autos.*;
 import org.usfirst.frc.team360.robot.subsystems.*;
-
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.internal.HardwareTimer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
 public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Pneumatics pneumatics;
@@ -43,13 +38,11 @@ public class Robot extends IterativeRobot {
 	Command m_USBSave;
 	Command autonomousCommand;
 	public static enum AutoModeRB {RED, BLUE};
-	public static enum AutoModeType {NONE, GEARSCENTER, GEARSLEFT, GEARSRIGHT, BOILER};
+	public static enum AutoModeType {NONE, PLACEONEGEARCENTER, PLACEONEGEARLEFT, PLACEONEGEARRIGHT, SHOOTBOILER, PLACEGEARRIGHTANDSHOOTERBOILER};
 	AutoModeRB autoChoiceRB;
 	static AutoModeType autoModeType;
-	SendableChooser autoRB;
-	SendableChooser autoType;
-	
-	 SendableChooser chooser;
+	SendableChooser<AutoModeRB> autoRB;
+	SendableChooser<AutoModeType> autoType;
 
 	@Override
 	public void robotInit() {
@@ -68,11 +61,18 @@ public class Robot extends IterativeRobot {
 		hanger = new Hanger();
 		ballIntake = new BallIntake();
 		rpiConnection = new RPIConnection();
-		autoType = new SendableChooser();
-		autoRB = new SendableChooser();
+		autoRB = new SendableChooser<AutoModeRB>();
+		autoType = new SendableChooser<AutoModeType>();
 		SmartDashboard.putData("Auto Action", autoType);
 		SmartDashboard.putData("Driver Station Side", autoRB);
-		RobotMap.lights = new Relay(0);
+		autoRB.addDefault("Red",  AutoModeRB.RED);
+		autoRB.addObject("Blue",  AutoModeRB.BLUE);
+		autoType.addDefault("None",  AutoModeType.NONE);
+		autoType.addObject("Place One Gear Center", AutoModeType.PLACEONEGEARCENTER);
+		autoType.addObject("Place One Gear Left", AutoModeType.PLACEONEGEARLEFT);
+		autoType.addObject("Place One Gear Right", AutoModeType.PLACEONEGEARRIGHT);
+		autoType.addObject("Shoot Boiler", AutoModeType.SHOOTBOILER);
+		autoType.addObject("Place Gear Right and Shoot Boiler", AutoModeType.PLACEGEARRIGHTANDSHOOTERBOILER);
 
 		new Thread(() -> {
 
@@ -100,13 +100,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		logger.closeLogger();
-		autoRB.addDefault("Red",  AutoModeRB.RED);
-		autoRB.addObject("Blue",  AutoModeRB.BLUE);
-		autoType.addDefault("None",  AutoModeType.NONE);
-		autoType.addObject("GearsCenter", AutoModeType.GEARSCENTER);
-		autoType.addObject("GearsLeft", AutoModeType.GEARSLEFT);
-		autoType.addObject("GearsRight", AutoModeType.GEARSRIGHT);
-		autoType.addObject("Boiler", AutoModeType.BOILER);
 	}
 
 	@Override
@@ -137,26 +130,32 @@ public class Robot extends IterativeRobot {
 		if (autoChoiceRB == AutoModeRB.RED){
 			if (autoModeType == AutoModeType.NONE){
 				autonomousCommand = new AutoNone();
-			} else if(autoModeType == AutoModeType.GEARSCENTER){
-				autonomousCommand = new AutoGearsCenter();
-			} else if(autoModeType == AutoModeType.GEARSLEFT){
-				autonomousCommand = new AutoGearsLeftRed();
-			} else if(autoModeType == AutoModeType.GEARSRIGHT){
-				autonomousCommand = new AutoGearsRightRed();
-			} else if(autoModeType == AutoModeType.BOILER){
-				autonomousCommand = new AutoBoilerRed();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARCENTER){
+				autonomousCommand = new AutoPlaceOneGearCenter();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARLEFT){
+				autonomousCommand = new AutoPlaceOneGearLeftRed();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARRIGHT){
+				autonomousCommand = new AutoPlaceOneGearRightRed();
+			} else if(autoModeType == AutoModeType.SHOOTBOILER){
+				autonomousCommand = new AutoShootBoilerRed();
+			} else if(autoModeType == AutoModeType.PLACEGEARRIGHTANDSHOOTERBOILER){
+				autonomousCommand = new AutoPlaceOneGearRightAndShootRightRed();
 			} 
 		} else if(autoChoiceRB == AutoModeRB.BLUE){
 			if (autoModeType == AutoModeType.NONE){
 				autonomousCommand = new AutoNone();
-			} else if(autoModeType == AutoModeType.GEARSCENTER){
-				autonomousCommand = new AutoGearsCenter();
-			} else if(autoModeType == AutoModeType.GEARSLEFT){
-				autonomousCommand = new AutoGearsLeftBlue();
-			} else if(autoModeType == AutoModeType.GEARSRIGHT){
-				autonomousCommand = new AutoGearsRightBlue();
-			} else if(autoModeType == AutoModeType.BOILER){
-				autonomousCommand = new AutoBoilerBlue();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARCENTER){
+				autonomousCommand = new AutoPlaceOneGearCenter();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARLEFT){
+				autonomousCommand = new AutoPlaceOneGearLeftBlue();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARRIGHT){
+				autonomousCommand = new AutoPlaceOneGearRightBlue();
+			} else if(autoModeType == AutoModeType.PLACEONEGEARRIGHT){
+				autonomousCommand = new AutoShootBoilerBlue();
+			} else if(autoModeType == AutoModeType.SHOOTBOILER){
+				autonomousCommand = new AutoShootBoilerBlue();
+			} else if(autoModeType == AutoModeType.PLACEGEARRIGHTANDSHOOTERBOILER){
+				autonomousCommand = new AutoPlaceOneGearRightAndShootRightBlue();
 			} 
 		}
 		if (autonomousCommand != null){

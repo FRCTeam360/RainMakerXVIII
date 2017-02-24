@@ -2,13 +2,9 @@ package org.usfirst.frc.team360.robot.subsystems;
 
 import org.usfirst.frc.team360.robot.RobotMap;
 import org.usfirst.frc.team360.robot.commands.RunHanger;
-
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Hanger extends Subsystem {
 	VictorSP hangerMotor1 = RobotMap.hangerMotor1;
 	VictorSP hangerMotor2 = RobotMap.hangerMotor2;
