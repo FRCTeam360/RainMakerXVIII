@@ -22,6 +22,9 @@ public class RobotMap {
 	public static Compressor compressor = new Compressor();
 	public static String RobotState = "Disabled";
 	
+	public static boolean gearTargetTracked = false;
+	public static double azimuthToGearTarget = 0;
+	
 	public static VictorSP motorR1 = new VictorSP(0);
 	public static VictorSP motorR2 = new VictorSP(1);
 	public static VictorSP motorL1 = new VictorSP(2);

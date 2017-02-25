@@ -77,10 +77,14 @@ public class RPIConnection {
 	            } catch (Exception e) {
 	                System.out.println("error " + e.toString());
 	            }
+	            if(dataCommSocket != null && !dataCommSocket.isClosed() && dataCommSocket.isConnected() && shouldRun &&
+	                    System.currentTimeMillis() - timeSinceLastMessage < 333){
+	            	send("<VisionModeRequest>" + "GearAutoTarget" + "</VisionModeRequest>");
+	            }
 	            while (dataCommSocket != null && !dataCommSocket.isClosed() && dataCommSocket.isConnected() && shouldRun &&
 	                    System.currentTimeMillis() - timeSinceLastMessage < 333) {
 	            	//if(joy.getRawButton(1) == true){
-	            		send("<VisionModeRequest>" + "GearDriverVision" + "</VisionModeRequest>");
+//	            		send("<VisionModeRequest>" + "GearAutoTarget" + "</VisionModeRequest>");
 //	            	} else if(joy.getRawButton(2) == true){
 //	            		send("<VisionModeRequest>" + "GearAutoTarget" + "</VisionModeRequest>");
 //	            	} else if(joy.getRawButton(3) == true){
@@ -96,7 +100,15 @@ public class RPIConnection {
 	                            send(createWhosThereTag());
 	                            timeSinceLastMessage = System.currentTimeMillis();
 	                        } else if(containsTag("TargetInfo", dataCommInputString)){
-	                        	System.out.println("Target Info" + decodeMessage("TargetInfo", dataCommInputString));
+	                        	if("true".equals((decodeMessage("TargetTracked", dataCommInputString)))){
+		                        	RobotMap.gearTargetTracked = true;
+		                        	RobotMap.azimuthToGearTarget = Double.parseDouble(decodeMessage("TargetInfo", dataCommInputString));
+	                        	} else {
+	                        		RobotMap.gearTargetTracked = false;
+	                        	}
+	                        	if(RobotMap.gearTargetTracked){
+	                        		System.out.println(RobotMap.azimuthToGearTarget);
+	                        	}
 	                        }
 	                    }
 	                } catch (Exception e) {
