@@ -151,9 +151,10 @@ public class Robot extends IterativeRobot {
 	}
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putString("shifter state", RobotMap.shifter.get().toString());
 		System.out.println(RobotMap.shooterEncoder.get());
 		SmartDashboard.putNumber("Arm Pot", RobotMap.pot.get());
-		SmartDashboard.putNumber("Arm Current", RobotMap.pdp.getCurrent(5));
+		SmartDashboard.putNumber("Arm  dsaCurrent", RobotMap.pdp.getCurrent(2));
 //		SmartDashboard.putNumber("Left Motor Currect", RobotMap.pdp.getCurrent(1));
 //		SmartDashboard.putNumber("Right Motor Currect", RobotMap.pdp.getCurrent(3));
 //		SmartDashboard.putNumber("Intake Motor Currect", RobotMap.pdp.getCurrent(12));

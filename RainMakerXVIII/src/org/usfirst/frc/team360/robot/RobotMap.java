@@ -65,6 +65,7 @@ public class RobotMap {
 	
 	public static boolean dangerZone = false;
 	public static DoubleSolenoid shifter = new DoubleSolenoid(0, 1);
+	public static DoubleSolenoid shooterThing = new DoubleSolenoid(2,3);
 	
 	public static AHRS navX = new AHRS(SPI.Port.kMXP);
 
