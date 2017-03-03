@@ -7,6 +7,5 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoShootBoilerBlue extends CommandGroup {
 
     public AutoShootBoilerBlue() {
-      
     }
 }

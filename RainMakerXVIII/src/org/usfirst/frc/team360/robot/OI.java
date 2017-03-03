@@ -34,6 +34,6 @@ public class OI {
 		 buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
 		 buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
 		 buttonDriveStraight2.whenPressed(new ResetNavX());
-		 buttonDriveStraight1.whenPressed(new PIDDriveStraight(.95, 0, 120));
+		 buttonDriveStraight1.whenPressed(new PIDDriveStraight(.5, 0, 120));
 	 }
 }

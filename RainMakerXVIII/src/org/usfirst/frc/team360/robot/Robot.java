@@ -154,7 +154,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("shifter state", RobotMap.shifter.get().toString());
 		System.out.println(RobotMap.shooterEncoder.get());
 		SmartDashboard.putNumber("Arm Pot", RobotMap.pot.get());
-		SmartDashboard.putNumber("Arm  dsaCurrent", RobotMap.pdp.getCurrent(2));
+		SmartDashboard.putNumber("Arm  dsaCurrent", RobotMap.pdp.getCurrent(11));
 //		SmartDashboard.putNumber("Left Motor Currect", RobotMap.pdp.getCurrent(1));
 //		SmartDashboard.putNumber("Right Motor Currect", RobotMap.pdp.getCurrent(3));
 //		SmartDashboard.putNumber("Intake Motor Currect", RobotMap.pdp.getCurrent(12));

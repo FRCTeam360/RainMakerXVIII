@@ -9,7 +9,7 @@ public class AutoPlaceOneGearCenter extends CommandGroup {
 
     public  AutoPlaceOneGearCenter() {
     	addParallel(new ResetNavX());
-    	addParallel(new MoveGearIntake(95, 1));
+    	addParallel(new SetGearIntakePositionCenter());
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
     	addSequential(new PIDDriveStraight(-.95, 0, 63));
@@ -17,9 +17,6 @@ public class AutoPlaceOneGearCenter extends CommandGroup {
     	addSequential(new WaitCommand(.5));
     	addSequential(new DropGear());
     	addSequential(new PIDDriveStraight(.95, 0, 24));
-//    	addSequential(new DriveStraightPID(.95, 180, 2382));
-//    	addSequential(new PIDNavXTurn(245));
-//    	addSequential(new DriveStraightPID(.95, 245, 3386));
-//    	addSequential(new PIDNavXTurn(180));
+    	addParallel(new SetGearIntakePositionUp());
     }
 }

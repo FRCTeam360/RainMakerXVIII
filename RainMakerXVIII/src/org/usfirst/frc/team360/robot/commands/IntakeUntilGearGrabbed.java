@@ -24,14 +24,16 @@ public class IntakeUntilGearGrabbed extends Command {
 
     protected void execute() {
     	Robot.m_intakeMotor.setMotor(1);
-    	if(RobotMap.pdp.getCurrent(5) > 7 && i <= 0){
+    	//if(RobotMap.pdp.getCurrent(5) > 7 && i <= 0){// practice bot
+
+    	if(RobotMap.pdp.getCurrent(11) > 7 && i <= 0){// comp bot
     		time.start();
     		i++;
     	}
     }
 
     protected boolean isFinished() {
-        return RobotMap.pdp.getCurrent(5) > 7 && time.get() < waitTime;
+        return RobotMap.pdp.getCurrent(11) > 7 && time.get() < waitTime;
         
     }
 

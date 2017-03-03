@@ -53,11 +53,15 @@ public class RobotMap {
 	public static final double PIDNavxTurnI = 0.03;
 	public static final double PIDNavxTurnD = 0.5;
 
-	public static final double PIDDriveStraightGainMultiplier = 0.0075;
+	
+	
+	public static final double PIDDriveStraightGainMultiplier = 0.03;
 	public static final double PIDDriveStraightP = 0.45;
-	public static final double PIDDriveStraightI = 0.012;
+	public static final double PIDDriveStraightI = 0.015;
 	public static final double PIDDriveStraightD = 0.011;
 
+	
+	
 	public static final double PIDCameraAimP = 0.5;
     public static final double PIDCameraAimI = 0.03;
     public static final double PIDCameraAimD = 0.5;
@@ -69,7 +73,8 @@ public class RobotMap {
 	
 	public static AHRS navX = new AHRS(SPI.Port.kMXP);
 
-	public static final double encoderCountsLeftToFeet = 22.7;
+	public static final double encoderCountsLeftToFeet = 22.6;
+	public static final double encoderCountsRightToFeet = 22.0;
 	
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	
