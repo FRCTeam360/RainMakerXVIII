@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static Logger logger;
 	public static Hanger hanger;
 	public static BallIntake ballIntake;
+	public static ShooterPnuematic shooterPnuematic;
 	public static RPIConnection rpiConnection;
 	Command getEnc;
 	Command m_USBSave;
@@ -58,6 +59,7 @@ public class Robot extends IterativeRobot {
 		m_intakeHeight = new IntakeHeight();
 		m_USBSave = new UsbSave();
 		hanger = new Hanger();
+		shooterPnuematic = new ShooterPnuematic();
 		ballIntake = new BallIntake();
 		rpiConnection = new RPIConnection();
 		autoRB = new SendableChooser<AutoModeRB>();

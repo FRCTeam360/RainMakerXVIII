@@ -1,6 +1,7 @@
 package org.usfirst.frc.team360.robot;
 
 import org.usfirst.frc.team360.robot.commands.*;
+import org.usfirst.frc.team360.robot.commands.autos.AutoDriveStraight;
 import org.usfirst.frc.team360.robot.triggers.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -20,20 +21,24 @@ public class OI {
 	 public static Button buttonStartShooter = new JoystickButton(joyOI, 6);
 	 public static Button buttonIntakeGearFromGround = new JoystickButton(joyOI, 1);
 	 public static Button buttonDropGear = new JoystickButton(joyOI, 2);
-	 public static Button buttonMoveIntakeToMiddle = new JoystickButton(joyOI, 3);
+	 public static Button buttonMoveIntakeToTop = new JoystickButton(joyOI, 3);
 	 public static Button buttonIntakeGearFromDriverStation = new JoystickButton(joyOI, 4);
+	 public static Button buttonSetGearIntakeHeightMiddle = new JoystickButton(joyOI, 8);
+	 public static Button buttonToggleShooterPnuematic = new JoystickButton(joyOI, 5);
 	 Command intakeGear = new IntakeGearFromGround();
 	 public OI(){
 		 buttonSwitch.whenPressed(new SwitchDirection());
 		 buttonDriveUp.whenPressed(new ShiftUp());
-		 buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
+		 buttonToggleShooterPnuematic.whenPressed(new ToggleShooterPnuematic());
+		 //buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
 		 buttonDriveDown.whenPressed(new ShiftDown());
 		 buttonDropGear.whenPressed(new DropGear());
 		 buttonStartShooter.whileHeld(new PIDShooterSpeed());
-		 buttonMoveIntakeToMiddle.whenPressed(new MoveGearIntake(165, 1));
+		 buttonMoveIntakeToTop.whenPressed(new SetGearIntakePositionUp());
 		 buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
 		 buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
-		 buttonDriveStraight2.whenPressed(new ResetNavX());
-		 buttonDriveStraight1.whenPressed(new PIDDriveStraight(.5, 0, 120));
+		 buttonSetGearIntakeHeightMiddle.whenPressed(new SetGearIntakePositionCenter());
+//		 buttonDriveStraight2.whenPressed(new ResetNavX());
+//		 buttonDriveStraight1.whenPressed(new AutoDriveStraight());
 	 }
 }
