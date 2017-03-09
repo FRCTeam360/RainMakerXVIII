@@ -13,8 +13,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.SPI;
 
 public class RobotMap {
-	public static double angle = 0;
-	public static double CameraFudgeFactor = 1.5;
+
 	public static Relay lights = new Relay(0);
 	
 	public static boolean driveForward = true;
@@ -24,6 +23,7 @@ public class RobotMap {
 	
 	public static boolean gearTargetTracked = false;
 	public static double azimuthToGearTarget = 0;
+	public static double gearCameraOffSetInDegrees = 1.5;
 	
 	public static VictorSP motorR1 = new VictorSP(0);
 	public static VictorSP motorR2 = new VictorSP(1);

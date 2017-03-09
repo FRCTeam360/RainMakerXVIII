@@ -1,24 +1,28 @@
 package org.usfirst.frc.team360.robot.commands;
 
+import org.usfirst.frc.team360.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class WaitForGoodCameraValue extends Command {
-	double thing;
+	Timer time;
     public WaitForGoodCameraValue() {
     }
 
     protected void initialize() {
-    	thing = 0;
+    	time = new Timer();
+    	time.reset();
+    	time.start();
     }
     
     protected void execute() {
-    	thing = 0; //changed to 0 from rpiserver
-    	SmartDashboard.putNumber("thing", thing);
+
     }
 
     protected boolean isFinished() {
-        return thing > 10 && thing < 50;
+        return time.get() > .25 && RobotMap.azimuthToGearTarget >= 5 && RobotMap.azimuthToGearTarget <= 55 && RobotMap.gearTargetTracked;
     }
     
     protected void end() {

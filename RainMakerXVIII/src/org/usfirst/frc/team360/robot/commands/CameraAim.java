@@ -5,14 +5,10 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class CameraAim extends CommandGroup {
 	
-    public  CameraAim() {
-    	
+    public CameraAim() {
     	addParallel(new TurnLightsOn());
     	addParallel(new ShiftUp());
-    	addSequential(new WaitCommand(1.4));
     	addSequential(new WaitForGoodCameraValue());
     	addSequential(new PIDCameraAim());
-    	addSequential(new WaitCommand(.2));
-    	
     }
 }
