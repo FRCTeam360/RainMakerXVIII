@@ -33,7 +33,8 @@ public class PIDShooterSpeed extends Command {
     }
 
     protected void execute() {
-    	Robot.m_shooter.setMotor(calculateMotor());
+    	//Robot.m_shooter.setMotor(calculateMotor());
+    	Robot.m_shooter.setMotor(.8);
     	SmartDashboard.putNumber("shooter motor", RobotMap.shooterMotor.get());
 		
     }

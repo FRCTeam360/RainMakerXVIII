@@ -10,6 +10,6 @@ public class IntakeGearFromGround extends CommandGroup {
     public IntakeGearFromGround() {
     	addSequential(new SetGearIntakePositionDown());
     	addSequential(new IntakeUntilGearGrabbed());
-    	addSequential(new MoveGearIntake(248, 1));
+    	addSequential(new SetGearIntakePositionCenter());
     }
 }

@@ -24,6 +24,7 @@ public class OI {
 	 public static Button buttonMoveIntakeToTop = new JoystickButton(joyOI, 3);
 	 public static Button buttonIntakeGearFromDriverStation = new JoystickButton(joyOI, 4);
 	 public static Button buttonSetGearIntakeHeightMiddle = new JoystickButton(joyOI, 8);
+	 public static Button buttonCancelGearIntake = new JoystickButton(joyOI, 10);
 	 public static Button buttonToggleShooterPnuematic = new JoystickButton(joyOI, 5);
 	 Command intakeGear = new IntakeGearFromGround();
 	 public OI(){
@@ -38,6 +39,7 @@ public class OI {
 		 buttonIntakeGearFromGround.whenPressed(new IntakeGearFromGround());
 		 buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
 		 buttonSetGearIntakeHeightMiddle.whenPressed(new SetGearIntakePositionCenter());
+		 buttonCancelGearIntake.whenPressed(new OverrideGearIntake());
 //		 buttonDriveStraight2.whenPressed(new ResetNavX());
 //		 buttonDriveStraight1.whenPressed(new AutoDriveStraight());
 	 }

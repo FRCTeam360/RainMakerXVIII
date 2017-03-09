@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class IntakeGearFromDriverStation extends CommandGroup {
 
     public IntakeGearFromDriverStation() {
-    	addSequential(new MoveGearIntake(165, 1));
+    	addSequential(new SetGearIntakePositionUp());
     	addSequential(new IntakeUntilGearGrabbed());
-    	addSequential(new MoveGearIntake(248, 1));
+    	addSequential(new SetGearIntakePositionCenter());
     }
 }
