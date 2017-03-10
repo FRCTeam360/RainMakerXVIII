@@ -99,8 +99,9 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
-		RobotMap.RobotState = "AutonomousRB";
+		RobotMap.RobotState = "Autonomous";
 		logger.initLogger();
+		m_USBSave.start();
 		 autoChoiceRB = (AutoModeRB) autoRB.getSelected();
 		 autoModeType = (AutoModeType) autoType.getSelected();
 		if (autoChoiceRB == AutoModeRB.RED){
