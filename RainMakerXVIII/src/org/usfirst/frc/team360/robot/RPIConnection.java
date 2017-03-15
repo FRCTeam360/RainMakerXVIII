@@ -14,6 +14,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RPIConnection {
     byte[] bytesOfMat;
  	byte[] incomingBytes;
@@ -102,12 +103,15 @@ public class RPIConnection {
 	                        } else if(containsTag("TargetInfo", dataCommInputString)){
 	                        	if("true".equals((decodeMessage("TargetTracked", dataCommInputString)))){
 		                        	RobotMap.gearTargetTracked = true;
-		                        	RobotMap.azimuthToGearTarget = Double.parseDouble(decodeMessage("TargetInfo", dataCommInputString));
+		                        	RobotMap.azimuthToGearTarget = Double.parseDouble(decodeMessage("TargetAzimuth", dataCommInputString));
+		                        	RobotMap.distanceToGearTarget = Double.parseDouble(decodeMessage("TargetDistance", dataCommInputString));
 	                        	} else {
 	                        		RobotMap.gearTargetTracked = false;
 	                        	}
+                        		SmartDashboard.putBoolean("target tracked", RobotMap.gearTargetTracked);
 	                        	if(RobotMap.gearTargetTracked){
-	                        		System.out.println(RobotMap.azimuthToGearTarget);
+	                        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
+	                        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
 	                        	}
 	                        }
 	                    }
