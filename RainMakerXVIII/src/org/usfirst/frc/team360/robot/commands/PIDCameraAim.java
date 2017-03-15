@@ -21,7 +21,6 @@ public class PIDCameraAim extends Command {
     double way = 1;
     int n = 0;
     Timer time;
-    int i = 0;
     boolean pid = false;
     public PIDCameraAim() {
     	requires(Robot.drivetrain); 
@@ -30,45 +29,26 @@ public class PIDCameraAim extends Command {
     protected void initialize() {
     	dAdjustment = 0;
     	iAdjustment = 0;
-    	SmartDashboard.putString("done", "going");
     	n = 0;
-    	i = 0;
     	pAdjustment = 0;
     	error = 0;
     	lastError = 0;
     	PIDAdjustment = 0;
-//    	if(direction > 180){
-//    		way = -1;
-//    	} else {
-//    		way = 1;
-//    	}
-    	direction = RobotMap.angle + RobotMap.CameraFudgeFactor;
+    	direction = RobotMap.azimuthToGearTarget + RobotMap.gearCameraOffSetInDegrees;
     	time = new Timer(); 
     	time.reset();
     	time.start();
     }
     
     protected void execute() {
-
-    	SmartDashboard.putNumber("angle: ", Robot.navX.getNavXAngle());
-      	SmartDashboard.putNumber("angle target: ", direction);
     	currentAngle = Robot.navX.getNavXAngle();
     	error = direction - currentAngle;
     	pAdjustment = error * RobotMap.PIDCameraAimP * RobotMap.PIDCameraAimGainMultiplier;
     	iAdjustment = iAdjustment + (error * RobotMap.PIDCameraAimI * RobotMap.PIDCameraAimGainMultiplier);
     	dAdjustment = (error - lastError) * RobotMap.PIDCameraAimD * RobotMap.PIDCameraAimGainMultiplier;
     	lastError = error;
-    	SmartDashboard.putNumber("error: ", error);
-    	SmartDashboard.putNumber("prop:  ", pAdjustment);
-      	SmartDashboard.putNumber("inte: ", iAdjustment);
     	PIDAdjustment = pAdjustment + iAdjustment + dAdjustment;
-    	SmartDashboard.putNumber("deriv: ", dAdjustment);
-    	SmartDashboard.putNumber("prop: ", motorSpeed);
-      	SmartDashboard.putNumber("inte: ", iAdjustment);
-      	SmartDashboard.putNumber("right: ", motorSpeed);
-      	SmartDashboard.putNumber("left: ", motorSpeed + PIDAdjustment);
       	if(Robot.navX.getNavXAngle() < 10 + direction && Robot.navX.getNavXAngle() > direction - 10 && pid == false){
-
       		iAdjustment = 0;
       		pid = true;
       	}
@@ -88,12 +68,10 @@ public class PIDCameraAim extends Command {
       			speed = -motorSpeed;
       		}
       	}
-    		Robot.drivetrain.driveR(-(speed));
-      		Robot.drivetrain.driveL((speed));	
-      		
+    	Robot.drivetrain.driveR(-(speed));
+      	Robot.drivetrain.driveL((speed));
   		if(Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5){
   			n++;
-  			i++;
   		} else {
   			n = 0;
   		}
@@ -101,9 +79,7 @@ public class PIDCameraAim extends Command {
     }
 
     protected boolean isFinished() {
-        return (Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5 && n > 5);// || time.get() > 3;
-
-    	//return false;
+        return (Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5 && n > 5);
     }
 
     protected void end() {
