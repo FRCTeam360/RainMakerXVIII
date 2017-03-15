@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SetGearIntakePositionDown extends CommandGroup {
 
     public SetGearIntakePositionDown() {
-    	addSequential(new MoveGearIntake(312, 1));
+    	//addSequential(new MoveGearIntake(312, 1));//comp bot
+    	addSequential(new MoveGearIntake(2, 1));
     }
 }
