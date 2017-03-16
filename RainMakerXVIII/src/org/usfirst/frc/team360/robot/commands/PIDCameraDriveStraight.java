@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PIDCameraDriveStraight extends Command {
 
+	double motorSpeed = -.5;
 	double direction = 0;
 	double currentAngle = 0;
 	double distance = 0;
