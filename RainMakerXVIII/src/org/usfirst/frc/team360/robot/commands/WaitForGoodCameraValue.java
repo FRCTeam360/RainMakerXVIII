@@ -22,7 +22,9 @@ public class WaitForGoodCameraValue extends Command {
     }
 
     protected boolean isFinished() {
-        return time.get() > .25 && RobotMap.azimuthToGearTarget >= 5 && RobotMap.azimuthToGearTarget <= 55 && RobotMap.gearTargetTracked;
+        return time.get() > .25 && RobotMap.azimuthToGearTarget >= 5 && 
+        		RobotMap.azimuthToGearTarget <= 55 && 
+        		RobotMap.gearTargetTracked && RobotMap.visionConnected;
     }
     
     protected void end() {

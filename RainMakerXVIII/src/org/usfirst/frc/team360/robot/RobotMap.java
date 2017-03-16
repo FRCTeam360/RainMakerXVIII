@@ -25,6 +25,7 @@ public class RobotMap {
 	public static double azimuthToGearTarget = 0;
 	public static double distanceToGearTarget = 0;
 	public static double gearCameraOffSetInDegrees = 1.5;
+	public static boolean visionConnected = false;
 	
 	public static VictorSP motorR1 = new VictorSP(0);
 	public static VictorSP motorR2 = new VictorSP(1);

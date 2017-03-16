@@ -78,6 +78,15 @@ public class RPIConnection {
 	            } catch (Exception e) {
 	                System.out.println("error " + e.toString());
 	            }
+
+	            RobotMap.azimuthToGearTarget = 0;
+	            RobotMap.distanceToGearTarget = 0;
+	            RobotMap.visionConnected = false;
+	            RobotMap.gearTargetTracked = false;
+        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
+        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
+            	SmartDashboard.putBoolean("Vision Connected", RobotMap.visionConnected);
+        		SmartDashboard.putBoolean("target tracked", RobotMap.gearTargetTracked);
 	            if(dataCommSocket != null && !dataCommSocket.isClosed() && dataCommSocket.isConnected() && shouldRun &&
 	                    System.currentTimeMillis() - timeSinceLastMessage < 333){
 	            	send("<VisionModeRequest>" + "GearAutoTarget" + "</VisionModeRequest>");
@@ -94,8 +103,11 @@ public class RPIConnection {
 //	            		send("<VisionModeRequest>" + "BoilderDriverVision" + "</VisionModeRequest>");
 //	            	} 
 	                try {
+	                	RobotMap.visionConnected = true;
+	                	SmartDashboard.putBoolean("Vision Connected", RobotMap.visionConnected);
 	                    while (dataCommInput.ready() && (dataCommInputString = dataCommInput.readLine()) != null) {
-	                        //System.out.println(clientSentence);
+	                        System.out.println(dataCommInputString);
+	            
 	                    	if (containsTag("KnockKnock", dataCommInputString)) {
 	                       //     System.out.println("Recieved Knock Knock Request");
 	                            send(createWhosThereTag());
@@ -108,8 +120,14 @@ public class RPIConnection {
 	                        	} else {
 	                        		RobotMap.gearTargetTracked = false;
 	                        	}
+//	                        	System.out.println(RobotMap.gearTargetTracked);
                         		SmartDashboard.putBoolean("target tracked", RobotMap.gearTargetTracked);
 	                        	if(RobotMap.gearTargetTracked){
+	                        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
+	                        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
+	                        	} else {
+	                        		RobotMap.azimuthToGearTarget = 0;
+	                        		RobotMap.distanceToGearTarget = 0;
 	                        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
 	                        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
 	                        	}
@@ -126,6 +144,14 @@ public class RPIConnection {
 	                    e.printStackTrace();
 	                }
 	            }
+	            RobotMap.azimuthToGearTarget = 0;
+	            RobotMap.distanceToGearTarget = 0;
+	            RobotMap.visionConnected = false;
+	            RobotMap.gearTargetTracked = false;
+        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
+        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
+            	SmartDashboard.putBoolean("Vision Connected", RobotMap.visionConnected);
+        		SmartDashboard.putBoolean("target tracked", RobotMap.gearTargetTracked);
 	            try {
 	                dataCommServerSocket.close();
 	                dataCommSocket.close();
