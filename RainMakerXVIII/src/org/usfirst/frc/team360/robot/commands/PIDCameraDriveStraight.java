@@ -5,9 +5,8 @@ import org.usfirst.frc.team360.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class PIDDriveStraight extends Command {
+public class PIDCameraDriveStraight extends Command {
 
-	double motorSpeed = 0;
 	double direction = 0;
 	double currentAngle = 0;
 	double distance = 0;
@@ -18,29 +17,30 @@ public class PIDDriveStraight extends Command {
 	double lastError = 0;
 	double PIDAdjustment = 0;
 	    
-	public PIDDriveStraight(double motorSpeed, double direction, double distance) {
-    	this.motorSpeed = -1 * motorSpeed;
-    	this.direction = direction;
-    	this.distance = distance * RobotMap.encoderCountsLeftToFeet;
-    	requires(Robot.drivetrain);
-    }
+	 public PIDCameraDriveStraight() {
+	    	requires(Robot.drivetrain);
+	    }
+	    
+		protected void initialize() {
+	    	Robot.drivetrain.resetEncs();
+	    	//Robot.navX.resetNavX();
+	    	dAdjustment = 0;
+	    	if(motorSpeed > 0){
+	    		//iAdjustment = 0.25;
+	    	//	practiceBotForward();
+	    	} else {
+	    	//	practiceBotBack();
+	    	}
+	    	iAdjustment = 0;
+	    	pAdjustment = 0;
+	    	error = 0;
+	    	lastError = 0;
+	    	PIDAdjustment = 0;
+	    	distance = RobotMap.encoderCountsLeftToFeet * RobotMap.distanceToGearTarget;
+	    	direction = Robot.navX.getNavXAngle();
+	    }
+	
     
-	protected void initialize() {
-    	Robot.drivetrain.resetEncs();
-    	//Robot.navX.resetNavX();
-    	dAdjustment = 0;
-    	if(motorSpeed > 0){
-    		//iAdjustment = 0.25;
-    	//	practiceBotForward();
-    	} else {
-    	//	practiceBotBack();
-    	}
-    	iAdjustment = 0;
-    	pAdjustment = 0;
-    	error = 0;
-    	lastError = 0;
-    	PIDAdjustment = 0;
-    }
 	
 	protected void execute() {
     	currentAngle = Robot.navX.getNavXAngle();
