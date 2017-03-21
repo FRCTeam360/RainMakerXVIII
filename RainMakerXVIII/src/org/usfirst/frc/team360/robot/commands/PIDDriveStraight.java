@@ -57,7 +57,7 @@ public class PIDDriveStraight extends Command {
     }
 
 	protected boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getRSoftEnc()) > Math.abs(distance);
+        return Math.abs(Robot.drivetrain.getLSoftEnc()) > Math.abs(distance);
     }
 
 	protected void end() {

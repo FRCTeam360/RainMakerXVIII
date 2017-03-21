@@ -14,6 +14,7 @@ public class OI {
 	 public static Joystick joyOI = new Joystick(2);   
 	 
 	 public static Button buttonDriveUp = new JoystickButton(joyR, 1);
+	 public static Button buttonAutoAlign = new JoystickButton(joyR, 2);
 	 //public static Button buttonSwitch = new JoystickButton(joyR, 2);
 	 //public static Button buttonDriveStraight2 = new JoystickButton(joyR, 7);
 	 
@@ -32,6 +33,7 @@ public class OI {
 	 
 	 public OI(){
 		buttonDriveUp.whenPressed(new ShiftUp());
+		buttonAutoAlign.whenPressed(new CameraAim());
 		buttonDriveDown.whenPressed(new ShiftDown());
 		buttonToggleShooterPnuematic.whenPressed(new ToggleShooterPnuematic());
 		buttonDropGear.whenPressed(new DropGear());

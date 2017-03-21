@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PIDCameraDriveStraight extends Command {
 
-	double motorSpeed = -.5;
+	double motorSpeed = .5;
 	double direction = 0;
 	double currentAngle = 0;
 	double distance = 0;
@@ -37,7 +37,8 @@ public class PIDCameraDriveStraight extends Command {
 	    	error = 0;
 	    	lastError = 0;
 	    	PIDAdjustment = 0;
-	    	distance = RobotMap.encoderCountsLeftToFeet * RobotMap.distanceToGearTarget;
+	    	SmartDashboard.putNumber("distaneeece", RobotMap.distanceToGearTarget);
+	    	distance = RobotMap.encoderCountsLeftToFeet * (RobotMap.distanceToGearTarget-19);
 	    	direction = Robot.navX.getNavXAngle();
 	    }
 	
@@ -45,7 +46,9 @@ public class PIDCameraDriveStraight extends Command {
 	
 	protected void execute() {
     	currentAngle = Robot.navX.getNavXAngle();
+    	SmartDashboard.putNumber("error left", Math.abs(Robot.drivetrain.getRSoftEnc()) - Math.abs(distance));
     	error = direction - currentAngle;
+    	System.out.println(distance + "distance");
     	pAdjustment = (direction - currentAngle) * RobotMap.PIDDriveStraightP * RobotMap.PIDDriveStraightGainMultiplier;
     	iAdjustment = iAdjustment + (error * RobotMap.PIDDriveStraightI * RobotMap.PIDDriveStraightGainMultiplier);
     	dAdjustment = (error - lastError) * RobotMap.PIDDriveStraightD * RobotMap.PIDDriveStraightGainMultiplier;
@@ -58,7 +61,7 @@ public class PIDCameraDriveStraight extends Command {
     }
 
 	protected boolean isFinished() {
-        return Math.abs(Robot.drivetrain.getRSoftEnc()) > Math.abs(distance);
+        return Math.abs(Robot.drivetrain.getLSoftEnc()) > Math.abs(distance);
     }
 
 	protected void end() {

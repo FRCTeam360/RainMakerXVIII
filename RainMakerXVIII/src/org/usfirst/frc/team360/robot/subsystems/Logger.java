@@ -88,7 +88,7 @@ public class Logger extends Subsystem {
 			potentiometerValue = 0;
 			DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 			Date date = new Date();
-			System.out.println(dateFormat.format(date));
+			//System.out.println(dateFormat.format(date));
 			String name = dateFormat.format(date);
     		Log = new File("u/" + RobotMap.RobotState + "_" + name + ".txt");//Log  location
 			if (!Log.exists()) {
@@ -112,7 +112,7 @@ public class Logger extends Subsystem {
 			}
 			bw.write(timeMessage);
 		} catch (Exception e) {
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 	}
 	public void logRobotState(){
@@ -121,7 +121,7 @@ public class Logger extends Subsystem {
 			bw.write('\t' + "Command Run: Robotstate" + '\n');
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 	}
 	public void logEncoders(){
@@ -136,7 +136,7 @@ public class Logger extends Subsystem {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 	}
 	public void logSpeed(){
@@ -151,7 +151,7 @@ public class Logger extends Subsystem {
 		}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 		
 	}
@@ -165,7 +165,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 	}
 	public void logNavXValue(){
@@ -177,14 +177,14 @@ public class Logger extends Subsystem {
 				bw.write(navXMessage);
 			}
 		}catch (Exception e) {
-			e.printStackTrace();
+			////e.printStackTrace();
 			}
 	}
 	public void logShiftUp(){
 		try{
 			bw.write('\t' + "Command Run: ShiftUp" + '\n');
 		}catch (Exception e){
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 
 	}
@@ -192,7 +192,7 @@ public class Logger extends Subsystem {
 		try{
 			bw.write('\t' + "Command Run: NavX" + '\n');
 		}catch (Exception e){
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 
 	}
@@ -200,7 +200,7 @@ public class Logger extends Subsystem {
 		try{
 			bw.write('\t' + "Command Run: JoystickTankDrive" + '\n');
 		}catch (Exception e){
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 
 	}
@@ -208,7 +208,7 @@ public class Logger extends Subsystem {
 		try{
 			bw.write('\t' + "Command Run: Pressurize" + '\n');
 		}catch (Exception e){
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 
 	}
@@ -216,7 +216,7 @@ public class Logger extends Subsystem {
 		try{
 			bw.write('\t' + "Command Run: ShiftDown" + '\n');
 		}catch (Exception e){
-			e.printStackTrace();
+			////e.printStackTrace();
 		}
 
 	}
@@ -230,7 +230,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void loghangerMotor2(){
@@ -243,7 +243,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void logintakeMotor(){
@@ -256,7 +256,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void logintakeHeight(){
@@ -269,7 +269,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void logshooterMotor(){
@@ -282,7 +282,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void logBallIntake(){
@@ -295,7 +295,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void logpotentiometer(){
@@ -308,7 +308,7 @@ public class Logger extends Subsystem {
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void closeLogger(){
@@ -319,7 +319,7 @@ public class Logger extends Subsystem {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
     public void initDefaultCommand() {

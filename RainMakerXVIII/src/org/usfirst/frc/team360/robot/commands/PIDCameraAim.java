@@ -34,15 +34,17 @@ public class PIDCameraAim extends Command {
     	error = 0;
     	lastError = 0;
     	PIDAdjustment = 0;
-    	direction = RobotMap.azimuthToGearTarget + RobotMap.gearCameraOffSetInDegrees;
+    	direction = RobotMap.azimuthToGearTarget + Robot.navX.getNavXAngle() + RobotMap.gearCameraOffSetInDegrees;
     	time = new Timer(); 
     	time.reset();
     	time.start();
     }
     
     protected void execute() {
+    	System.out.println(direction + "direction");
     	currentAngle = Robot.navX.getNavXAngle();
     	error = direction - currentAngle;
+    	System.out.println(error + "error");
     	pAdjustment = error * RobotMap.PIDCameraAimP * RobotMap.PIDCameraAimGainMultiplier;
     	iAdjustment = iAdjustment + (error * RobotMap.PIDCameraAimI * RobotMap.PIDCameraAimGainMultiplier);
     	dAdjustment = (error - lastError) * RobotMap.PIDCameraAimD * RobotMap.PIDCameraAimGainMultiplier;
@@ -68,8 +70,8 @@ public class PIDCameraAim extends Command {
       			speed = -motorSpeed;
       		}
       	}
-    	Robot.drivetrain.driveR(-(speed));
-      	Robot.drivetrain.driveL((speed));
+    	Robot.drivetrain.driveR((speed));
+      	Robot.drivetrain.driveL(-(speed));
   		if(Robot.navX.getNavXAngle() < .5 + direction && Robot.navX.getNavXAngle() > direction - .5){
   			n++;
   		} else {

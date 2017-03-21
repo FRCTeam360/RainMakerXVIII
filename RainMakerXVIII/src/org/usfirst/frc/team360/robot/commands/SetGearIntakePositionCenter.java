@@ -5,6 +5,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SetGearIntakePositionCenter extends CommandGroup {
 
     public SetGearIntakePositionCenter() {
-    	addSequential(new MoveGearIntake(210, 1));
+    	addSequential(new MoveGearIntake(233, 1));
     }
 }

@@ -66,7 +66,17 @@ public class RPIConnection {
             	//readThread.start();
 	            shouldRun = true;
 	        }
+	        
 	        public void run() {
+
+	            RobotMap.azimuthToGearTarget = 0;
+	            RobotMap.distanceToGearTarget = 0;
+	            RobotMap.visionConnected = false;
+	            RobotMap.gearTargetTracked = false;
+        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
+        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
+            	SmartDashboard.putBoolean("Vision Connected", RobotMap.visionConnected);
+        		SmartDashboard.putBoolean("target tracked", RobotMap.gearTargetTracked);
 	            try {
 	                dataCommServerSocket = new ServerSocket(3600);
 	                dataCommServerSocket.setReuseAddress(true);
@@ -79,14 +89,6 @@ public class RPIConnection {
 	                System.out.println("error " + e.toString());
 	            }
 
-	            RobotMap.azimuthToGearTarget = 0;
-	            RobotMap.distanceToGearTarget = 0;
-	            RobotMap.visionConnected = false;
-	            RobotMap.gearTargetTracked = false;
-        		SmartDashboard.putNumber("azimuth", RobotMap.azimuthToGearTarget);
-        		SmartDashboard.putNumber("distance", RobotMap.distanceToGearTarget);
-            	SmartDashboard.putBoolean("Vision Connected", RobotMap.visionConnected);
-        		SmartDashboard.putBoolean("target tracked", RobotMap.gearTargetTracked);
 	            if(dataCommSocket != null && !dataCommSocket.isClosed() && dataCommSocket.isConnected() && shouldRun &&
 	                    System.currentTimeMillis() - timeSinceLastMessage < 333){
 	            	send("<VisionModeRequest>" + "GearAutoTarget" + "</VisionModeRequest>");
@@ -105,8 +107,9 @@ public class RPIConnection {
 	                try {
 	                	RobotMap.visionConnected = true;
 	                	SmartDashboard.putBoolean("Vision Connected", RobotMap.visionConnected);
+	                	//System.out.println(RobotMap.visionConnected);
 	                    while (dataCommInput.ready() && (dataCommInputString = dataCommInput.readLine()) != null) {
-	                        System.out.println(dataCommInputString);
+	                    //    System.out.println(dataCommInputString);
 	            
 	                    	if (containsTag("KnockKnock", dataCommInputString)) {
 	                       //     System.out.println("Recieved Knock Knock Request");

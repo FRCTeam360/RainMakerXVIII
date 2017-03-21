@@ -16,7 +16,7 @@ public class PIDShooterSpeed extends Command {
 	double iAdjustment = 0;
 	double dAdjustment = 0;
 	double PID_Adjust = 0;
-	double setPointRPM = 3375;
+	double setPointRPM = 1700;
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
     boolean shouldRun = false;
@@ -33,8 +33,8 @@ public class PIDShooterSpeed extends Command {
     }
 
     protected void execute() {
-    	//Robot.m_shooter.setMotor(calculateMotor());
-    	Robot.m_shooter.setMotor(.8);
+    	Robot.m_shooter.setMotor(calculateMotor());
+    	//Robot.m_shooter.setMotor(.8);
     	SmartDashboard.putNumber("shooter motor", RobotMap.shooterMotor.get());
 		
     }
