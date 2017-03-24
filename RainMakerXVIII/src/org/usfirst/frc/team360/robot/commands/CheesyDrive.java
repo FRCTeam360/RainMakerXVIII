@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CheesyDrive extends Command {
 
+    double mQuickStopAccumulator;
+    public static final double kThrottleDeadband = 0.02;
+    private static final double kWheelDeadband = 0.02;
+    private static final double kTurnSensitivity = 1.0;
     public CheesyDrive() {
      	requires(Robot.drivetrain); 
     }
@@ -21,10 +25,6 @@ public class CheesyDrive extends Command {
     protected void execute() {
 		cheesyDrive(OI.joyR.getRawAxis(1), OI.joyL.getRawAxis(0), OI.joyL.getRawButton(4));
     }
-    double mQuickStopAccumulator;
-    public static final double kThrottleDeadband = 0.02;
-    private static final double kWheelDeadband = 0.02;
-    private static final double kTurnSensitivity = 1.0;
     
     public static double limit(double v, double limit) {
         return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1);
