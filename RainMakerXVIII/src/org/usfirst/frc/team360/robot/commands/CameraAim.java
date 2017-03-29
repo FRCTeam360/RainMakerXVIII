@@ -13,5 +13,6 @@ public class CameraAim extends CommandGroup {
     	addSequential(new WaitForGoodCameraValue());
     	addSequential(new PIDCameraAim());
     	addSequential(new PIDCameraDriveStraight());
+    	addSequential(new OscilatingDrive());
     }
 }
