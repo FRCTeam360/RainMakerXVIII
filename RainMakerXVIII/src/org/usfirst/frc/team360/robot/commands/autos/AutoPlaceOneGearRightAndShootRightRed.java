@@ -20,5 +20,6 @@ public class AutoPlaceOneGearRightAndShootRightRed extends CommandGroup {
     	addSequential(new PIDNavXTurn(-40));
     	addParallel(new SetGearIntakePositionUp());
     	addSequential(new PIDDriveStraight(.95, -40, 108));
+    	addSequential(new ShiftDown());
     }
 }

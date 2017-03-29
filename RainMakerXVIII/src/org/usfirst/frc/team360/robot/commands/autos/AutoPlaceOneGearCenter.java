@@ -18,5 +18,6 @@ public class AutoPlaceOneGearCenter extends CommandGroup {
     	addSequential(new DropGear());
     	addSequential(new PIDDriveStraight(.95, 0, 24));
     	addParallel(new SetGearIntakePositionUp());
+    	addSequential(new ShiftDown());
     }
 }

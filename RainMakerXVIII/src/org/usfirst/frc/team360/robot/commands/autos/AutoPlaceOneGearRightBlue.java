@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoPlaceOneGearRightBlue extends CommandGroup {
 
     public AutoPlaceOneGearRightBlue() {
-
     	addParallel(new ResetNavX());
     	addParallel(new SetGearIntakePositionCenter());
     	addSequential(new ShiftUp());
@@ -23,5 +22,6 @@ public class AutoPlaceOneGearRightBlue extends CommandGroup {
     	addSequential(new DropGear());
     	addSequential(new PIDDriveStraight(.95, -60, 24));
     	addParallel(new SetGearIntakePositionUp());
+    	addSequential(new ShiftDown());
     }
 }

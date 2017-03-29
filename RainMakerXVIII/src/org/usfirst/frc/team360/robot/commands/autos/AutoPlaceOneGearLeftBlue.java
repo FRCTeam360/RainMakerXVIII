@@ -20,8 +20,7 @@ public class AutoPlaceOneGearLeftBlue extends CommandGroup {
     	addSequential(new DropGear());
     	addSequential(new PIDDriveStraight(.95, 60, 24));
     	addParallel(new SetGearIntakePositionUp());
-
-
+    	addSequential(new ShiftDown());
     }
 }
 
