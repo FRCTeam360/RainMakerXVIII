@@ -118,6 +118,7 @@ public class PIDShooterSpeed extends Command {
     		SmartDashboard.putNumber("bad value", shooterMotor);
     		shooterMotor=0;
     	}
+    	shooterMotor = .7;
     	return shooterMotor;
     }
 

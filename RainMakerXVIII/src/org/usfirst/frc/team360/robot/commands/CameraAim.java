@@ -9,7 +9,7 @@ public class CameraAim extends CommandGroup {
     	//addParallel(new ResetNavX());
     	addParallel(new TurnLightsOn());
     	addParallel(new ShiftUp());
-    	addSequential(new SetGearIntakePositionCenter());
+    	//addSequential(new SetGearIntakePositionCenter());
     	addSequential(new WaitForGoodCameraValue());
     	addSequential(new PIDCameraAim());
     	addSequential(new PIDCameraDriveStraight());

@@ -16,11 +16,11 @@ public class OI {
 	 public static Button buttonDriveUp = new JoystickButton(joyR, 1);
 	 public static Button buttonAutoAlign = new JoystickButton(joyR, 2);
 	 //public static Button buttonSwitch = new JoystickButton(joyR, 2);
-	 //public static Button buttonDriveStraight2 = new JoystickButton(joyR, 7);
+	 public static Button buttonDriveStraight2 = new JoystickButton(joyR, 7);
 	 
 	 public static Button buttonDriveDown = new JoystickButton(joyL, 1);
-	 //public static Button buttonResetDriveEncoders = new JoystickButton(joyL, 3);
-	 //public static Button buttonDriveStraight1 = new JoystickButton(joyL, 7);
+	 public static Button buttonResetDriveEncoders = new JoystickButton(joyL, 3);
+	 public static Button buttonDriveStraight1 = new JoystickButton(joyL, 7);
 	 
 	 public static Button buttonIntakeGearFromGround = new JoystickButton(joyOI, 1);
 	 public static Button buttonDropGear = new JoystickButton(joyOI, 2);
@@ -33,7 +33,7 @@ public class OI {
 	 
 	 public OI(){
 		buttonDriveUp.whenPressed(new ShiftUp());
-		buttonAutoAlign.whenPressed(new CameraAim());
+		buttonAutoAlign.whileHeld(new CameraAim());
 		buttonDriveDown.whenPressed(new ShiftDown());
 		buttonToggleShooterPnuematic.whenPressed(new ToggleShooterPnuematic());
 		buttonDropGear.whenPressed(new DropGear());
@@ -44,8 +44,8 @@ public class OI {
 		buttonSetGearIntakeHeightMiddle.whenPressed(new SetGearIntakePositionCenter());
 		buttonCancelGearIntake.whenPressed(new OverrideGearIntake());
 //		buttonSwitch.whenPressed(new SwitchDirection());
-//		buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
-//		buttonDriveStraight2.whenPressed(new ResetNavX());
-//		buttonDriveStraight1.whenPressed(new AutoDriveStraight());
+		buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
+		buttonDriveStraight2.whenPressed(new ResetNavX());
+		buttonDriveStraight1.whenPressed(new PIDDriveStraight(-.95, 0, 3000));
 	 }
 }

@@ -20,6 +20,7 @@ public class SetIntakeHeight extends Command {
     	} else {
    		Robot.m_intakeHeight.stopMotor();
     	}
+    	SmartDashboard.putNumber("intake speed", RobotMap.intakeHeight.get());
     	SmartDashboard.putNumber("Intake Height Motor PDP (amps)", RobotMap.pdp.getCurrent(15));
 //    	if (RobotMap.pdp.getCurrent(15) > 4.5 || ShouldBeStopped == true)  {
 //    		Robot.m_intakeHeight.stopMotor();

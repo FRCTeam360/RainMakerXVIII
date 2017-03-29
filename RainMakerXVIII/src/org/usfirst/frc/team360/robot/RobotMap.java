@@ -24,7 +24,8 @@ public class RobotMap {
 	public static boolean gearTargetTracked = false;
 	public static double azimuthToGearTarget = 0;
 	public static double distanceToGearTarget = 0;
-	public static double gearCameraOffSetInDegrees = 4.5;
+	//public static double gearCameraOffSetInDegrees = 4.5;
+	public static double gearCameraOffSetInDegrees = 0;
 	public static boolean visionConnected = false;
 	
 	public static VictorSP motorR1 = new VictorSP(0);
@@ -70,7 +71,7 @@ public class RobotMap {
     public static final double PIDCameraAimGainMultiplier = 0.15;
 	
 	public static boolean dangerZone = false;
-	public static DoubleSolenoid shifter = new DoubleSolenoid(0, 1);
+	public static DoubleSolenoid shifter = new DoubleSolenoid(1, 0);
 	public static DoubleSolenoid shooterThing = new DoubleSolenoid(2,3);
 	
 	public static AHRS navX = new AHRS(SPI.Port.kMXP);
