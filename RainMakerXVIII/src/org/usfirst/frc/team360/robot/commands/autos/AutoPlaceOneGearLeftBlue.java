@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class AutoPlaceOneGearLeftBlue extends CommandGroup {
 
-
-
     public AutoPlaceOneGearLeftBlue() {
     	addParallel(new ResetNavX());
     	addParallel(new SetGearIntakePositionCenter());

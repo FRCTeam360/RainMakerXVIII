@@ -13,7 +13,6 @@ public class AutoDriveStraight extends CommandGroup {
 
     public AutoDriveStraight() {
     	addParallel(new ResetNavX());
-    	addParallel(new SetGearIntakePositionCenter());
     	addSequential(new ShiftUp());
     	addSequential(new WaitCommand(.25));
     	addSequential(new PIDDriveStraight(-.95, 0, 63));
