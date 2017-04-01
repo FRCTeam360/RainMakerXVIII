@@ -16,7 +16,7 @@ public class PIDShooterSpeed extends Command {
 	double iAdjustment = 0;
 	double dAdjustment = 0;
 	double PID_Adjust = 0;
-	double setPointRPM = 1700;
+	double setPointRPM = 3200;
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
     boolean shouldRun = false;
@@ -35,7 +35,7 @@ public class PIDShooterSpeed extends Command {
     protected void execute() {
     	Robot.m_shooter.setMotor(calculateMotor());
     	//Robot.m_shooter.setMotor(.8);
-    	SmartDashboard.putNumber("shooter motor", RobotMap.shooterMotor.get());
+    	SmartDashboard.putNumber("shooter motor", RobotMap.shootingMotor.get());
 		
     }
 
@@ -60,9 +60,10 @@ public class PIDShooterSpeed extends Command {
 			while(shouldRun){
 			//	Thread t = new Thread(new Helper());
 			//	t.start();
+				SmartDashboard.putNumber("shooter vel", ((double)Robot.m_shooter.getVelocity())/4100/.1*60);
 				currentRPM = findRPM();
 				SmartDashboard.putNumber("Shooter's RPM", currentRPM);
-				Robot.m_shooter.resetEnc();
+				//Robot.m_shooter.resetEnc();
 				try{
 					Thread.sleep(20);
 				} catch(Exception e){
@@ -74,7 +75,7 @@ public class PIDShooterSpeed extends Command {
 //
 //			@Override
 //			public void run() {
-//				// TODO Auto-generated method stub
+//				// TODO Auto-generated met[\]hod stub
 //				SmartDashboard.putDouble("Shooter RPM", Robot.m_shooter.getEnc());
 //				Robot.m_shooter.resetEnc();
 //			}
@@ -83,7 +84,7 @@ public class PIDShooterSpeed extends Command {
     	
     }
     public double findRPM(){
-		return -1 * ((((double)Robot.m_shooter.getEnc())/360)/.02)*60;
+		return -1 * ((double)Robot.m_shooter.getVelocity())/4100/.1*60;
     }
     protected double calculateMotor() {
     	PIDControl = true;
@@ -118,7 +119,7 @@ public class PIDShooterSpeed extends Command {
     		SmartDashboard.putNumber("bad value", shooterMotor);
     		shooterMotor=0;
     	}
-    	shooterMotor = .7;
+    	//shooterMotor = .7;
     	return shooterMotor;
     }
 

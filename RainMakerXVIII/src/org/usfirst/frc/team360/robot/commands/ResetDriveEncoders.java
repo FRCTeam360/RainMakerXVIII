@@ -14,6 +14,7 @@ public class ResetDriveEncoders extends Command {
 
     protected void execute() {
     	Robot.drivetrain.resetEncs();
+    	Robot.m_shooter.resetEnc();
     }
 
     protected boolean isFinished() {

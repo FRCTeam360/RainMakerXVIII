@@ -273,7 +273,7 @@ public class Logger extends Subsystem {
 		}
 	}
 	public void logshooterMotor(){
-		shooterMotorValue = RobotMap.shooterMotor.get();
+		shooterMotorValue = RobotMap.shootingMotor.get();
 		try{
 			if(shooterMotorValue != shooterMotorOldValue){
 				shooterMotorOldValue = shooterMotorValue;

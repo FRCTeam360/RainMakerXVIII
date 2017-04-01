@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.SPI;
+import com.ctre.CANTalon;
 
 public class RobotMap {
 
@@ -34,10 +35,11 @@ public class RobotMap {
 	public static VictorSP motorL2 = new VictorSP(3);
 	public static VictorSP hangerMotor1 = new VictorSP(4);
 	public static VictorSP hangerMotor2 = new VictorSP(5);
-	public static VictorSP shooterMotor = new VictorSP(6);
+	//public static VictorSP shooterMotor = new VictorSP(6);
 	public static VictorSP intakeHeight = new VictorSP(7);
 	public static VictorSP intakeMotor = new VictorSP(8);
 	public static VictorSP ballIntake = new VictorSP(9);
+	public static CANTalon shootingMotor = new CANTalon(0);
 	
 	public static Encoder shooterEncoder = new Encoder(4, 5);
 	public static Encoder driveTrainEncoderLeft = new Encoder(8, 9);
@@ -71,7 +73,7 @@ public class RobotMap {
     public static final double PIDCameraAimGainMultiplier = 0.15;
 	
 	public static boolean dangerZone = false;
-	public static DoubleSolenoid shifter = new DoubleSolenoid(1, 0);
+	public static DoubleSolenoid shifter = new DoubleSolenoid(0, 1);
 	public static DoubleSolenoid shooterThing = new DoubleSolenoid(2,3);
 	
 	public static AHRS navX = new AHRS(SPI.Port.kMXP);

@@ -15,7 +15,7 @@ public class OI {
 	 
 	 public static Button buttonDriveUp = new JoystickButton(joyR, 1);
 	 public static Button buttonAutoAlign = new JoystickButton(joyR, 2);
-	 //public static Button buttonSwitch = new JoystickButton(joyR, 2);
+	 public static Button buttonSwitch = new JoystickButton(joyL, 2);
 	 public static Button buttonDriveStraight2 = new JoystickButton(joyR, 7);
 	 
 	 public static Button buttonDriveDown = new JoystickButton(joyL, 1);
@@ -43,7 +43,7 @@ public class OI {
 		buttonIntakeGearFromDriverStation.whenPressed(new IntakeGearFromDriverStation());
 		buttonSetGearIntakeHeightMiddle.whenPressed(new SetGearIntakePositionCenter());
 		buttonCancelGearIntake.whenPressed(new OverrideGearIntake());
-//		buttonSwitch.whenPressed(new SwitchDirection());
+		buttonSwitch.whenPressed(new ResetDriveEncoders());
 		buttonResetDriveEncoders.whenPressed(new ResetDriveEncoders());
 		buttonDriveStraight2.whenPressed(new ResetNavX());
 		buttonDriveStraight1.whenPressed(new PIDDriveStraight(-.95, 0, 3000));
