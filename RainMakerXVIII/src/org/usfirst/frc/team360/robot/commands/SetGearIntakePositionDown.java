@@ -6,6 +6,6 @@ public class SetGearIntakePositionDown extends CommandGroup {
 
     public SetGearIntakePositionDown() {
     	//addSequential(new MoveGearIntake(312, 1));//comp bot
-    	addSequential(new MoveGearIntake(244, 1));
+    	addSequential(new MoveGearIntake(287, 1));
     }
 }

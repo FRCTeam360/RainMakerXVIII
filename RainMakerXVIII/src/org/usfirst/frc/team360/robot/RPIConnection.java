@@ -35,9 +35,9 @@ public class RPIConnection {
     int start;
     int stop;
     int tagLength;
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    CvSink cvSink = CameraServer.getInstance().getVideo();
-    CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 320, 240);
+//    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+//    CvSink cvSink = CameraServer.getInstance().getVideo();
+//    CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 320, 240);
     Mat source = new Mat();
     double[] bytes;
     double[] bytes2 = new double[921600];
