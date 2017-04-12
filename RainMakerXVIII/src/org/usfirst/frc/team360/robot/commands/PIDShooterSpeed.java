@@ -16,7 +16,7 @@ public class PIDShooterSpeed extends Command {
 	double iAdjustment = 0;
 	double dAdjustment = 0;
 	double PID_Adjust = 0;
-	double setPointRPM = 3200;
+	double setPointRPM = 3400;
 	double wheel_RPM = 0;
 	double shooterMotor = 0.5;
     boolean shouldRun = false;

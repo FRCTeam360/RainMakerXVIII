@@ -38,7 +38,7 @@ public class PIDCameraDriveStraight extends Command {
 	    	lastError = 0;
 	    	PIDAdjustment = 0;
 	    	SmartDashboard.putNumber("distaneeece", RobotMap.distanceToGearTarget);
-	    	distance = RobotMap.encoderCountsLeftToFeet * (RobotMap.distanceToGearTarget-19);
+	    	distance = RobotMap.encoderCountsLeftToFeet * (RobotMap.distanceToGearTarget-15);
 	    	direction = Robot.navX.getNavXAngle();
 	    }
 	
